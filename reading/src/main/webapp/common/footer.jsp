@@ -10,6 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 외부스타일시트 -->
+<link rel="stylesheet" href="/asset/front/css/footer-style.css">
 </head>
 <body>
 

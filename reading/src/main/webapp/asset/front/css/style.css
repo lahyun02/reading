@@ -19,67 +19,7 @@ body {
     font-size: 16px;
     color: #4c4747;
 }
-/* --------헤더-------- */
-#main-header {
-    width: 100%;
-    /* position: absolute;
-    top: 0;
-    left: 0; */
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #fbf8f4;
-    z-index: 100;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-}
 
-/* 메뉴 */
-.menu-wrap {
-    width: 1200px;
-    margin: 0 auto;
-    padding-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-#main-header #nav .gnb {
-    display: flex;
-}
-
-#main-header #nav .gnb a {
-    margin: 0 20px;
-    color: #4c4747;
-    position: relative;
-}
-
-#main-header #nav .gnb a::after {
-  background: none repeat scroll 0 0 transparent;
-  bottom: -4px;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 25%;
-  position: absolute;
-  background: #6bb5d6;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0;
-}
-
-#main-header #nav .gnb a:hover:after { 
-    width: 100%; 
-    left: 0; 
-  }
-
-/* 회원가입 & 로그인 */
-.util-menu {
-    display: flex;
-    
-}
-.util-menu a{
-    padding: 0 10px;
-    font-size: 14px;
-    color: #4c4747;
-}
 
 
 /* --------섹션1 메인 -------- */
@@ -231,31 +171,3 @@ body {
 }
 
 
-/* -------- 푸터 -------- */
-#footer {
-    background: #6bb5d6;
-}
-#footer .footer-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-#footer .footer-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-#footer .footer-contents {
-    color: #fff;
-}
-#footer .footer-contents p {
-    margin-top: 16px;
-}
-#footer .footer-menu {
-    display: flex;
-}
-#footer .footer-menu li a {
-    color: #fff;
-    padding-left: 18px;
-    font-size: 14px;
-}

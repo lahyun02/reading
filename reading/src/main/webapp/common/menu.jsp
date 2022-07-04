@@ -11,6 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>menu</title>
+<!-- 외부스타일시트 -->
+<link rel="stylesheet" href="/asset/front/css/menu-style.css">
 <!-- 제이쿼리 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 </head>
@@ -36,7 +38,7 @@
      <ul class="util-menu">
      	<c:choose>
 			<c:when test="${empty USER_INFO.id}">
-				<li><a href="/login/actionLogin.do" class="login">로그인</a></li>
+				<li><a href="/login/loginForm.do" class="login">로그인</a></li>
 			</c:when>
 			<c:otherwise>
 				<li><a href="/login/actionLogout.do"><c:out value="${USER_INFO.name}"/>님 로그아웃</a></li>

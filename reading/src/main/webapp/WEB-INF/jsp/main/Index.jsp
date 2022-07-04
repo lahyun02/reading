@@ -106,7 +106,6 @@
                 </div>
             </div>
         </section>
-        
     </div>
     
     
@@ -118,6 +117,6 @@
     <!-- 외부 JS -->
     <script src="/asset/front/js/main.js"></script>
     
-
+    
 </body>
 </html>

@@ -14,3 +14,20 @@ var swiper = new Swiper(".mySwiper", {
     el: ".swiper-pagination",
   },
 });
+
+
+function vali(){
+	  if(!$("#loginId").val()){
+	    alert("아이디를 입력해주세요.");
+	    $("#loginId").focus();
+	    return false;
+	  }
+	    	
+	  if(!$("#loginPw").val()){
+	    alert("비밀번호를 입력해주세요.");
+	    $("#loginPw").focus();
+	    return false;
+	  }
+	}
+
+	

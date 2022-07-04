@@ -25,7 +25,8 @@
                 <h2>로그인</h2>
             </div>
             <!-- 로그인 폼 -->
-            <form action="#" id="frmLogin" name="frmLogin" method="post">
+            <form action="/login/actionLogin.do" id="frmLogin" name="frmLogin" method="post">
+            	<input type="hidden" name="userSe" value="USR"/>
                 <fieldset>
                     <legend>로그인을 위한 아이디/비밀번호 입력</legend>
                     <div class="ipt-row">
@@ -41,6 +42,15 @@
 	
 	
 	<jsp:include page="/common/footer.jsp" />
+	
+	
 </div>
+
+<script>
+<c:if test="${not empty loginMessage}">
+	alert("${loginMessage}"); 
+</c:if> 
+</script>
+
 </body>
 </html>
