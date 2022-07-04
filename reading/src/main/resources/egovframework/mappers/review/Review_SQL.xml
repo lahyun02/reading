@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.let.review.service.impl.ReviewMapper">
+	
+	<resultMap id="review" type="egovframework.let.review.service.ReviewVO">
+		<result property="reviewId" column="REVIEW_ID"/>
+		<result property="reviewSj" column="REVIEW_SJ"/>
+		<result property="reviewCn" column="REVIEW_CN"/>
+		<result property="inqireCo" column="INQIRE_CO"/>
+		<result property="creatIp" column="CREAT_IP"/>
+		<result property="othbcAt" column="OTHBC_AT"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="frstRegistPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+	</resultMap>
+	
+	<select id="selectReviewList" resultType="egovMap">
+		SELECT
+			A.REVIEW_ID
+			, A.REVIEW_SJ
+			, A.REVIEW_CN
+			, A.INQIRE_CO
+			, A.CREAT_IP
+			, A.OTHBC_AT
+			, A.OTHBL_AT 
+			, A.USE_AT
+			, A.ATCH_FILE_ID
+			, A.FRST_REGIST_PNTTM
+			, A.FRST_REGISTER_ID
+		FROM REVIEW A
+		ORDER BY A.FRST_REGIST_PNTTM DESC
+	</select>
+	
+	
+
+</mapper>
