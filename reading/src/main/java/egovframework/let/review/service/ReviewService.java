@@ -12,6 +12,9 @@ public interface ReviewService {
 	//Review 등록하기
 	public String insertReview(ReviewVO vo) throws Exception;
 	
+	//Review 상세정보 조회하기 
+	public ReviewVO selectReview(ReviewVO rvVO) throws Exception;
+	
 	//Review 수정하기
 //	public void updateReview(ReviewVO vo) throws Exception;
 	

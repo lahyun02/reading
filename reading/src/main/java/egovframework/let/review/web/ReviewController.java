@@ -26,6 +26,7 @@ public class ReviewController {
 	//Review 목록 가져오기
 	@RequestMapping(value = "/review/selectList.do")
 	public String selectList(@ModelAttribute("rv") ReviewVO rvVO,HttpServletRequest request, ModelMap model) throws Exception {
+//		model.addAttribute("rv", rvVO); 
 		
 		List<EgovMap> list = reviewService.selectReviewList(rvVO);
 		System.out.println(list); 
@@ -33,7 +34,6 @@ public class ReviewController {
 		
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		model.addAttribute("UserInfo", user); 
-//		model.addAttribute("rv", rvVO); 
 		return "review/ReviewSelectList";
 	}
 	
@@ -66,7 +66,10 @@ public class ReviewController {
 	public String select(@ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
 		
-		return "review/select.do";
+		ReviewVO result = reviewService.selectReview(rvVO);
+		model.addAttribute("result", result);
+		
+		return "review/ReviewSelect";
 	}
 	
 	//Review 글 수정하기

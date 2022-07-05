@@ -60,5 +60,21 @@
 			, #{userId}
 		)
 	</insert>
+	
+	<select id="selectReview" resultMap="review"> 
+		SELECT
+			REVIEW_ID
+			, REVIEW_SJ
+			, REVIEW_CN
+			, INQIRE_CO
+			, CREAT_IP
+			, OTHBC_AT
+			, USE_AT
+			, ATCH_FILE_ID
+			, FRST_REGIST_PNTTM
+			, FRST_REGISTER_ID
+		FROM REVIEW
+		WHERE REVIEW_ID = #{reviewId}
+	</select>
 
 </mapper>

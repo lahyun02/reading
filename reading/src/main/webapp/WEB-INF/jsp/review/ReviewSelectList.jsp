@@ -47,7 +47,8 @@
 	                    <div class="box">
 	                        <div class="b-img"></div>
 	                        <div class="b-title">
-	                            <a href="#"><c:out value="${rv.reviewSj}" /> </a>
+	                            <a href="/review/select.do?reviewId=${rv.reviewId}"><c:out value="${rv.reviewSj}" /> </a>
+	                            <input type="hidden" name="reviewId" value="${rv.reviewId}" />
 	                        </div>
 	                        <div class="b-txt">
 	                            <span><c:out value="${rv.frstRegisterId}" /></span>
