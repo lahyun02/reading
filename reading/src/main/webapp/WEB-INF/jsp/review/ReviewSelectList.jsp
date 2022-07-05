@@ -40,70 +40,28 @@
             </div>
             <div class="rv-container">
                 <div class="cnt-page">
-                    총 게시물 10건 | 현재페이지 2/5
+                    총 게시물 10건 | 현재페이지 2/5 <c:out value="${rv.reviewSj}" />
                 </div>
                 <div class="rvList-wrap">
-                    <div class="box">
-                        <div class="b-img"></div>
-                        <div class="b-title">
-                            <a href="#">제목입니다</a>
-                        </div>
-                        <div class="b-txt">
-                            <span>작성자</span>
-                            <em>2022-07-04</em>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="b-img"></div>
-                        <div class="b-title">
-                            <a href="#">제목입니다</a>
-                        </div>
-                        <div class="b-txt">
-                            <span>작성자</span>
-                            <em>2022-07-04</em>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="b-img"></div>
-                        <div class="b-title">
-                            <a href="#">제목입니다</a>
-                        </div>
-                        <div class="b-txt">
-                            <span>작성자</span>
-                            <em>2022-07-04</em>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="b-img"></div>
-                        <div class="b-title">
-                            <a href="#">제목입니다</a>
-                        </div>
-                        <div class="b-txt">
-                            <span>작성자</span>
-                            <em>2022-07-04</em>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="b-img"></div>
-                        <div class="b-title">
-                            <a href="#">제목입니다</a>
-                        </div>
-                        <div class="b-txt">
-                            <span>작성자</span>
-                            <em>2022-07-04</em>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="b-img"></div>
-                        <div class="b-title">
-                            <a href="#">제목입니다</a>
-                        </div>
-                        <div class="b-txt">
-                            <span>작성자</span>
-                            <em>2022-07-04</em>
-                        </div>
-                    </div>
+                	<c:forEach var="rv" items="${rvList}" varStatus="status" >
+	                    <div class="box">
+	                        <div class="b-img"></div>
+	                        <div class="b-title">
+	                            <a href="#"><c:out value="${rv.reviewSj}" /> </a>
+	                        </div>
+	                        <div class="b-txt">
+	                            <span><c:out value="${rv.frstRegisterId}" /></span>
+	                            <em><fmt:formatDate value="${rv.frstRegistPnttm}" pattern="yyyy-MM-dd"/></em>
+	                        </div>
+	                    </div>
+                	</c:forEach>
+                    
                 </div>
+                
+                <div class="">
+                	<a href="/review/reviewRegist.do">글쓰기</a>
+                </div>
+                
             </div>
             
         </section>

@@ -28,5 +28,15 @@ public class ReviewServiceImpl extends EgovAbstractServiceImpl implements Review
 		return reviewMapper.selectReviewList(vo);
 	}
 	
+	//Review 글 등록하기
+	@Override
+	public String insertReview(ReviewVO vo) throws Exception {
+		String id = idgenService.getNextStringId();
+		vo.setReviewId(id);
+		reviewMapper.insertReview(vo);
+		
+		return id;
+	}
+	
 
 }

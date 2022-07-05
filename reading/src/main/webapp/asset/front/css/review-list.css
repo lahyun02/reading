@@ -44,23 +44,28 @@ em {
     padding-top: 50px;
 }
 #rvList-section .rvList-wrap {
-    /* width: 1200px;
-    margin: 0 auto; */
+    /* width: 1200px;*/
+    /*margin: 0 auto; */
     margin-top: 30px;
     margin-bottom: 100px;
     display: grid;
-    /* justify-content: center; */
-    /* grid-template-columns: 350px 350px 350px; */
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 400px 400px;
+    grid-template-rows: 350px 350px;
     grid-gap: 80px;
+    
+    /* display: table;
+    table-layout: fixed;
+    width: 1200px; */
+    
 }
 #rvList-section .rvList-wrap .box {
     background: lightgray;
+    
+    /* display: table-cell; */
 }
 #rvList-section .rvList-wrap .b-img {
     width: 350px;
-    height: 300px;
+    height: 250px;
     background: lightpink;
 }
 #rvList-section .rvList-wrap .b-title {

@@ -11,6 +11,11 @@ public interface ReviewMapper {
 	
 	//게시물 목록 가져오기
 	List<EgovMap> selectReviewList(ReviewVO vo) throws Exception;
+	
+	//Review글 등록하기 
+	void insertReview(ReviewVO vo) throws Exception; 
+	
+	
 
 	
 	
