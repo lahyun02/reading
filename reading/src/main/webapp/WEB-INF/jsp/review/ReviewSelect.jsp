@@ -20,8 +20,25 @@
 <div class="container">
 	
 	
-	${result.reviewSj} 
+	제목 : ${result.reviewSj} 
 	
+	작성자 id : ${result.frstRegisterId} 
+	
+	내용 : ${result.reviewCn}
+	
+	조회수 : ${result.inqireCo}
+	
+	작성일 : <fmt:formatDate value="${result.frstRegistPnttm}" pattern="yyyy-MM-dd" /> 
+	
+	<c:url var="uptUrl" value="/review/reviewRegist.do">
+		<c:param name="reviewId" value="${result.reviewId}" />
+	</c:url>
+	<a href="${uptUrl}">수정</a>
+	
+	<c:url var="delUrl" value="/review/delete.do">
+		<c:param name="reviewId" value="${result.reviewId}" />
+	</c:url>
+	<a href="${delUrl}">삭제</a>
 	
 	
 </div>

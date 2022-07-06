@@ -17,8 +17,8 @@
 <link rel="stylesheet" href="/asset/front/css/login-style.css">
 </head>
 <body>
+<%@include file="/WEB-INF/jsp/main/jsp/menu.jsp"%>
 <div class="login-container">
-	<jsp:include page="/common/menu.jsp" />
 	
 	<section id="login-section">
             <div class="login-ctn">
@@ -41,10 +41,11 @@
         </section>
 	
 	
-	<jsp:include page="/common/footer.jsp" />
+
 	
 	
 </div>
+<%@include file="/WEB-INF/jsp/main/jsp/footer.jsp"%>
 
 <script>
 <c:if test="${not empty loginMessage}">

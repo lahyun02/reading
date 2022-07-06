@@ -30,8 +30,10 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+<%@include file="/WEB-INF/jsp/main/jsp/menu.jsp"%>
 <div id="container">
-	<jsp:include page="/common/menu.jsp" />
+
+	
 	
 	<!-- 섹션 - -->
         <section id="rvList-section">
@@ -43,16 +45,16 @@
                     총 게시물 10건 | 현재페이지 2/5 <c:out value="${rv.reviewSj}" />
                 </div>
                 <div class="rvList-wrap">
-                	<c:forEach var="rv" items="${rvList}" varStatus="status" >
+                	<c:forEach var="item" items="${rvList}" varStatus="status" >
 	                    <div class="box">
 	                        <div class="b-img"></div>
 	                        <div class="b-title">
-	                            <a href="/review/select.do?reviewId=${rv.reviewId}"><c:out value="${rv.reviewSj}" /> </a>
-	                            <input type="hidden" name="reviewId" value="${rv.reviewId}" />
+	                            <a href="/review/select.do?reviewId=${item.reviewId}"><c:out value="${item.reviewSj}" /> </a>
+	                            <input type="hidden" name="reviewId" value="${item.reviewId}" />
 	                        </div>
 	                        <div class="b-txt">
-	                            <span><c:out value="${rv.frstRegisterId}" /></span>
-	                            <em><fmt:formatDate value="${rv.frstRegistPnttm}" pattern="yyyy-MM-dd"/></em>
+	                            <span><c:out value="${item.frstRegisterId}" /></span>
+	                            <em><fmt:formatDate value="${item.frstRegistPnttm}" pattern="yyyy-MM-dd"/></em>
 	                        </div>
 	                    </div>
                 	</c:forEach>
@@ -69,7 +71,7 @@
         
 	
 	
-	<jsp:include page="/common/footer.jsp" />
+<%@include file="/WEB-INF/jsp/main/jsp/footer.jsp"%>
 </div>
 
 

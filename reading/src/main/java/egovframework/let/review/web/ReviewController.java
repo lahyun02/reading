@@ -15,6 +15,7 @@ import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.board.service.BoardService;
 import egovframework.let.review.service.ReviewService;
 import egovframework.let.review.service.ReviewVO;
+import egovframework.let.utl.fcc.service.EgovStringUtil;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Controller
@@ -41,9 +42,14 @@ public class ReviewController {
 	@RequestMapping(value = "/review/reviewRegist.do")
 	public String reviewRegist(@ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
+		ReviewVO result = new ReviewVO();
+		if(rvVO.getReviewId()!=null || !("").equals(rvVO.getReviewId())) { 
+			result = reviewService.selectReview(rvVO);
+		}
+		model.addAttribute("result", result); 
 		
 		return "review/ReviewRegist";
-	}
+	}    
 	
 	//Review 글 등록하기
 	@RequestMapping(value = "/review/insert.do")
@@ -77,12 +83,21 @@ public class ReviewController {
 	public String update(@ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+		rvVO.setUserId(user.getId());
+		rvVO.setLastUpdusrId(user.getId());
 		
-		rvVO.setUserId(user.getId()); 
-//		reviewService.updateReview(rvVO); 
+		reviewService.updateReview(rvVO); 
 		
 		return "forward:/review/selectList.do";
 	}
 	
+	//Review 글 삭제하기
+	@RequestMapping(value = "/review/delete.do")
+	public String delete(@ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		reviewService.deleteReview(rvVO);
+		
+		return "forward:/review/selectList.do";
+	}
 	
 }

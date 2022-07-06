@@ -43,5 +43,17 @@ public class ReviewServiceImpl extends EgovAbstractServiceImpl implements Review
 		return reviewMapper.selectReview(rvVO);
 	}
 	
+	//Review 수정하기
+	@Override
+	public void updateReview(ReviewVO rvVO) throws Exception {
+		reviewMapper.updateReview(rvVO);
+	}
+	
+	//Review 삭제하기
+	@Override
+	public void deleteReview(ReviewVO rvVO) throws Exception {
+		reviewMapper.deleteReview(rvVO);
+	}
+	
 
 }

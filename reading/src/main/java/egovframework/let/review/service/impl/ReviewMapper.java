@@ -16,7 +16,13 @@ public interface ReviewMapper {
 	void insertReview(ReviewVO vo) throws Exception;
 	
 	//Review글 상세조회하기 
-	ReviewVO selectReview(ReviewVO rvVO) throws Exception; 
+	ReviewVO selectReview(ReviewVO rvVO) throws Exception;
+	
+	//Review 수정하기
+	void updateReview(ReviewVO rvVO) throws Exception;
+	
+	//Review 삭제하기
+	void deleteReview(ReviewVO rvVO) throws Exception; 
 	
 	
 

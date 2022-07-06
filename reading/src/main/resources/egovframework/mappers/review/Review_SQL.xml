@@ -76,5 +76,19 @@
 		FROM REVIEW
 		WHERE REVIEW_ID = #{reviewId}
 	</select>
-
+	
+	<update id="updateReview" parameterType="egovframework.let.review.service.ReviewVO"> 
+		UPDATE REVIEW 
+		SET REVIEW_SJ = #{reviewSj}
+			, REVIEW_CN = #{reviewCn}
+			, LAST_UPDT_PNTTM = NOW()
+			, LAST_UPDUSR_ID = #{lastUpdusrId}
+		WHERE REVIEW_ID = #{reviewId}
+	</update>
+	
+	<delete id="deleteReview" parameterType="egovframework.let.review.service.ReviewVO">
+		DELETE FROM REVIEW
+		WHERE REVIEW_ID = #{reviewId}
+	</delete>
+	
 </mapper>

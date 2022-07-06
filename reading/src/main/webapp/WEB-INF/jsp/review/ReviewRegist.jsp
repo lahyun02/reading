@@ -19,10 +19,20 @@
 </head>
 <body>
 
+<c:choose>
+	<c:when test="${not empty result.reviewId}">
+		<c:set var="actionUrl" value="/review/update.do" /> 
+	</c:when>
+	<c:otherwise>
+		<c:set var="actionUrl" value="/review/insert.do" /> 
+	</c:otherwise>
+</c:choose>
+
+
 <div class="container"> 
 <div id="contents">
-	<form action="/review/insert.do" method="post" id="" name="">
-		<input type="hidden" name="" value="" />
+	<form action="${actionUrl}" method="post" id="frm" name="" onsubmit="return regist()"> 
+		<input type="hidden" name="reviewId" value="${rv.reviewId }" />
 		<table>
 			<caption></caption>
 			<colgroup>
@@ -33,28 +43,72 @@
 				<tr>
 					<th>제목</th>
 					<td>
-						<input type="text" id="reviewSj" name="reviewSj" title="" class="" value="" />
+						<input type="text" id="reviewSj" name="reviewSj" title="" class="" value="${result.reviewSj}" />
 					</td>
 				</tr>
 				<tr>
 					<th>작성자ID</th>
-					<td></td>
+					<td><c:out value="${result.frstRegisterId }" /></td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td>
-						<textarea id="reviewCn" name="reviewCn" rows="30" cols="50" title=""></textarea>
+						<textarea id="reviewCn" name="reviewCn" rows="30" cols="50" title=""><c:out value="${result.reviewCn}" /></textarea>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="">
-			<input type="submit" value="등록" /> 
+			
+			<c:choose>
+				<c:when test="${not empty result.reviewId }">
+					<c:url var="udtUrl" value="/review/update.do">
+						<c:param name="reviewId" value="${result.reviewId}" />
+					</c:url>
+					<a href="${udtUrl}" id="btn-rgt">수정</a>
+					
+					<c:url var="delUrl" value="/review/delete.do">
+						<c:param name="reviewId" value="${result.reviewId}" />
+					</c:url>
+					<a href="${delUrl}" id="btn-del">삭제</a>
+				</c:when>
+				<c:otherwise>
+					<c:url var="istUrl" value="/review/insert.do">
+						<c:param name="reviewId" value="${result.reviewId}" />
+					</c:url>
+					<a href="${istUrl}" id="btn-rgt">등록</a> 
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 	</form>
+	
 </div>
 
 </div>
+
+<script>
+	$(document).ready(function() {
+		$("#btn-rgt").click(function(){
+			alert(00);
+			$("#frm").submit();
+			return false;
+		});
+		
+		$("#btn-del").click(function(){
+			if(!confirm("삭제하시겠습니까?")){
+				return false;
+			}
+		});
+	});
+	
+	function regist() {
+		if(!$("#reviewSj").val()) {
+			alert("제목을 입력하세요.");
+			return false;
+		};
+	};
+</script>
 
 </body>
 </html>

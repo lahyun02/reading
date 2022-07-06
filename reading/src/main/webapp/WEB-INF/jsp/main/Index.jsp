@@ -23,9 +23,9 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 </head>
 <body>
-
+<%@include file="/WEB-INF/jsp/main/jsp/menu.jsp"%>
 <div id="container">
-        <jsp:include page="/common/menu.jsp" />
+        
         <!-- 섹션 -메인 -->
         <section id="main-section">
             <div class="main-bg">
@@ -106,10 +106,11 @@
                 </div>
             </div>
         </section>
+        
     </div>
     
-    
-    <jsp:include page="/common/footer.jsp" />
+    <%@include file="/WEB-INF/jsp/main/jsp/footer.jsp"%>
+
 
 
     <!-- Swiper JS -->

@@ -16,7 +16,12 @@ public interface ReviewService {
 	public ReviewVO selectReview(ReviewVO rvVO) throws Exception;
 	
 	//Review 수정하기
-//	public void updateReview(ReviewVO vo) throws Exception;
+	public void updateReview(ReviewVO rvVO) throws Exception;
+
+	//Review 삭제하기
+	public void deleteReview(ReviewVO rvVO) throws Exception; 
+	
+	
 	
 	
 
