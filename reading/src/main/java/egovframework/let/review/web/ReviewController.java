@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
@@ -53,7 +54,7 @@ public class ReviewController {
 	
 	//Review 글 등록하기
 	@RequestMapping(value = "/review/insert.do")
-	public String insert(@ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
+	public String insert(final MultipartHttpServletRequest multiRequest, @ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
 		System.out.println(rvVO.getReviewSj());  
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		
@@ -80,7 +81,7 @@ public class ReviewController {
 	
 	//Review 글 수정하기
 	@RequestMapping(value = "/review/update.do")
-	public String update(@ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
+	public String update(final MultipartHttpServletRequest multiRequest, @ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		rvVO.setUserId(user.getId());

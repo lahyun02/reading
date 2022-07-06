@@ -12,7 +12,7 @@ import egovframework.com.cmm.service.FileVO;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
-@Component("fileMngUtil")
+//@Component("fileMngUtil")
 public class FileMngUtil {
 	
 	public static final int BUFF_SIZE = 2048;

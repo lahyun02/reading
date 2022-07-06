@@ -31,7 +31,7 @@
 
 <div class="container"> 
 <div id="contents">
-	<form action="${actionUrl}" method="post" id="frm" name="" onsubmit="return regist()"> 
+	<form action="${actionUrl}" method="post" id="frm" name="" onsubmit="return regist()" enctype="multipart/form-data"> 
 		<input type="hidden" name="reviewId" value="${rv.reviewId }" />
 		<table>
 			<caption></caption>
@@ -54,6 +54,12 @@
 					<th>내용</th>
 					<td>
 						<textarea id="reviewCn" name="reviewCn" rows="30" cols="50" title=""><c:out value="${result.reviewCn}" /></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>첨부파일</th>
+					<td>
+						<input type="file" name="file_1" />
 					</td>
 				</tr>
 			</tbody>
