@@ -30,6 +30,11 @@
 	
 	작성일 : <fmt:formatDate value="${result.frstRegistPnttm}" pattern="yyyy-MM-dd" /> 
 	
+	첨부파일목록 : 
+	<c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
+		<c:param name="param_atchFileId" value="${result.atchFileID}" />	
+	</c:import> 
+	
 	<c:url var="uptUrl" value="/review/reviewRegist.do">
 		<c:param name="reviewId" value="${result.reviewId}" />
 	</c:url>

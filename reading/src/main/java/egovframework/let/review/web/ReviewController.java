@@ -1,6 +1,7 @@
 package egovframework.let.review.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -9,14 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.service.EgovFileMngService;
+import egovframework.com.cmm.service.FileVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.board.service.BoardService;
 import egovframework.let.review.service.ReviewService;
 import egovframework.let.review.service.ReviewVO;
 import egovframework.let.utl.fcc.service.EgovStringUtil;
+import egovframework.let.utl.fcc.service.FileMngUtil;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Controller
@@ -24,6 +29,12 @@ public class ReviewController {
 	
 	@Resource(name = "reviewService")
 	private ReviewService reviewService;
+	
+	@Resource(name = "egovFileMngService")
+	protected EgovFileMngService fileMngService;
+	
+	@Resource(name = "fileMngUtil")
+	private FileMngUtil fileUtil;
 	
 	//Review 목록 가져오기
 	@RequestMapping(value = "/review/selectList.do")
@@ -58,6 +69,17 @@ public class ReviewController {
 		System.out.println(rvVO.getReviewSj());  
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		
+		//---- 첨부파일 추가
+		List<FileVO> result = null;
+		String atchFileId = "";
+		
+		final Map<String, MultipartFile> files = multiRequest.getFileMap();
+		if(!files.isEmpty()) {
+			result = fileUtil.parseFileInf(files, "REVIEW_", 0, "", "review.fileStorePath");
+			atchFileId = fileMngService.insertFileInfs(result);
+		}
+		rvVO.setAtchFileId(atchFileId); 
+		//
 		
 		rvVO.setCreatIp(request.getRemoteAddr());
 		rvVO.setUserId(user.getId());
@@ -84,6 +106,28 @@ public class ReviewController {
 	public String update(final MultipartHttpServletRequest multiRequest, @ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
 		
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+		
+		
+		
+		
+		//------첨부파일
+		String atchFileId = rvVO.getAtchFileId();
+		final Map<String, MultipartFile> files = multiRequest.getFileMap();
+		if(!files.isEmpty()) {
+			if(EgovStringUtil.isEmpty(atchFileId)) {
+				List<FileVO> result = fileUtil.parseFileInf(files, "REVIEW_", 0, "", "review.fileStorePath");
+				atchFileId = fileMngService.insertFileInfs(result);
+				rvVO.setAtchFileId(atchFileId); 
+			} else {
+				FileVO fvo = new FileVO();
+				fvo.setAtchFileId(atchFileId);
+				int cnt = fileMngService.getMaxFileSN(fvo);
+				List<FileVO> _result = fileUtil.parseFileInf(files, "REVIEW_", cnt, atchFileId, "review.fileStorePath");
+				fileMngService.updateFileInfs(_result); 
+			}
+		}
+		//
+		
 		rvVO.setUserId(user.getId());
 		rvVO.setLastUpdusrId(user.getId());
 		
