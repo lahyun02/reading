@@ -30,7 +30,7 @@ public class ReviewController {
 	@Resource(name = "reviewService")
 	private ReviewService reviewService;
 	
-	@Resource(name = "egovFileMngService")
+	@Resource(name = "EgovFileMngService")
 	protected EgovFileMngService fileMngService;
 	
 	@Resource(name = "fileMngUtil")

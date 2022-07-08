@@ -33,6 +33,7 @@
 <div id="contents">
 	<form action="${actionUrl}" method="post" id="frm" name="" onsubmit="return regist()" enctype="multipart/form-data"> 
 		<input type="hidden" name="reviewId" value="${rv.reviewId }" />
+		<input type="hidden" name="returnUrl" value="/board/boardRegist.do" />
 		<table>
 			<caption></caption>
 			<colgroup>
@@ -56,6 +57,18 @@
 						<textarea id="reviewCn" name="reviewCn" rows="30" cols="50" title=""><c:out value="${result.reviewCn}" /></textarea>
 					</td>
 				</tr>
+				
+				<c:if test="${not empty result.atchFileId}">
+					<tr>
+						<th scope="row">기존<br/>첨부파일목록</th>		
+						<td>
+							<c:import url="/cmm/fms/selectFileInfsForUpdate.do" charEncoding="utf-8">
+								<c:param name="param_atchFileId" value="${result.atchFileId }" />
+							</c:import>
+						</td>			
+					</tr>
+				</c:if>
+				
 				<tr>
 					<th>첨부파일</th>
 					<td>
