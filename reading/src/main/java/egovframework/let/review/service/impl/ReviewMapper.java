@@ -22,7 +22,10 @@ public interface ReviewMapper {
 	void updateReview(ReviewVO rvVO) throws Exception;
 	
 	//Review 삭제하기
-	void deleteReview(ReviewVO rvVO) throws Exception; 
+	void deleteReview(ReviewVO rvVO) throws Exception;
+	
+	//Review 목록 수 
+	int selectReviewListCnt(ReviewVO rvVO) throws Exception; 
 	
 	
 

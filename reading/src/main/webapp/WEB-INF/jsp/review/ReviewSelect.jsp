@@ -81,6 +81,7 @@
 	
 	<c:url var="delUrl" value="/review/delete.do">
 		<c:param name="reviewId" value="${result.reviewId}" />
+		<c:param name="frstRegisterId" value="${result.frstRegisterId}" />
 	</c:url>
 	<a href="${delUrl}" id="btn-del" class="btn"><i class="ico-del"></i> 삭제</a>
 	

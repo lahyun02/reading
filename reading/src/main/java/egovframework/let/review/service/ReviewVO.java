@@ -48,7 +48,34 @@ public class ReviewVO extends ComDefaultVO implements Serializable {
 	
 	//관리자여부
 	private String mngAt;
+	
+	
+	/** recordCountPerPage */
+    private int recordCountPerPage = 9;
+	
+    /** 페이지갯수 */
+    private int pageUnit = 9;
+    
+    
+    
 
+	public int getPageUnit() {
+		return pageUnit;
+	}
+
+	public void setPageUnit(int pageUnit) {
+		this.pageUnit = pageUnit;
+	}
+
+	public int getRecordCountPerPage() {
+		return recordCountPerPage;
+	}
+
+	public void setRecordCountPerPage(int recordCountPerPage) {
+		this.recordCountPerPage = recordCountPerPage;
+	}
+
+	
 	public String getReviewId() {
 		return reviewId;
 	}

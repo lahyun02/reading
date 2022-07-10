@@ -50,9 +50,9 @@ em {
     margin-bottom: 100px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 350px 350px;
+    grid-template-rows: 380px 380px;
     grid-gap: 80px;
-    
+    box-sizing: border-box;
     /* display: table;
     table-layout: fixed;
     width: 1200px; */
@@ -60,14 +60,34 @@ em {
 }
 #rvList-section .rvList-wrap .box {
     background: lightgray;
+    position: relative;
+    border-radius: 20px;
+    
     
     /* display: table-cell; */
 }
 #rvList-section .rvList-wrap .b-img {
-    width: 350px;
+    /* width: 350px; */
+    width: 100%;
     height: 250px;
-    background: lightpink;
+   	
+    /* background: lightpink; */
 }
+#rvList-section .rvList-wrap .b-wrap {
+	padding: 0px;
+}
+#rvList-section .rvList-wrap .b-img img {
+	width: 100%;
+	height: 100%;
+	border-radius: 20px 20px 0 0;
+}
+
+#rvList-section .rvList-wrap .num {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 #rvList-section .rvList-wrap .b-title {
     padding-top: 20px;
 }
@@ -80,4 +100,25 @@ em {
     display: flex;
     justify-content: space-between;
 }
+#rvList-section .rvList-wrap .b-content {
+	padding-top: 10px;
+}
+#rvList-section .rvList-wrap .b-content p {
+	width: 350px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
+/* PAGING */
+#paging { width:100%; color:#000; font-style:normal; margin:50px 0 30px; font-weight:bold; text-align:center; }
+#paging img { vertical-align:middle; }
+#paging a { display:inline-block; width:31px; height:31px; line-height:31px; vertical-align:middle; border:none; margin:0 3px 0 2px; font-size:14px; color:#000; border-radius:1px;border-color:#fff;}
+#paging a:hover { background-color:#fafafa; color:#000; }
+#paging a span { position:absolute; z-index:-1;visibility:hidden; }
+#paging .first { position:relative; background:url("images/common/btn_first.svg") center no-repeat; border-color:#dee2e6;}
+#paging .prev { position:relative; background:url("images/common/btn_prev.svg") center no-repeat; border-color:#dee2e6; margin-right:30px;}
+#paging .next { position:relative; background:url("images/common/btn_next.svg") center no-repeat; border-color:#dee2e6; margin-left:30px;}
+#paging .last { position:relative; background:url("images/common/btn_last.svg") center no-repeat; border-color:#dee2e6;}
+#paging .current { display:inline-block;background:#6bb5d6;border:none;color:#fff;width:31px;height:31px;line-height:31px;vertical-align:middle;border-radius:1px;border-radius:2px;}
+#rvList-section #paging { float:none; }

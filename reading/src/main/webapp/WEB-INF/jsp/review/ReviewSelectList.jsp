@@ -42,23 +42,53 @@
             </div>
             <div class="rv-container">
                 <div class="cnt-page">
-                    총 게시물 10건 | 현재페이지 2/5 <c:out value="${rv.reviewSj}" />
+                    총 게시물 <strong><c:out value="${paginationInfo.totalRecordCount}"/></strong>건 | 현재페이지 <strong><c:out value="${paginationInfo.currentPageNo}"/></strong>/<c:out value="${paginationInfo.totalPageCount}"/>
+                	
                 </div>
                 <div class="rvList-wrap">
                 	<c:forEach var="item" items="${rvList}" varStatus="status" >
 	                    <div class="box">
-	                        <div class="b-img"></div>
+	                    	<div class="num">
+	                    		<c:out value="${paginationInfo.totalRecordCount - ((paginationInfo.currentPageNo-1) * paginationInfo.recordCountPerPage) - (status.count - 1)}" />
+	                    		| ${paginationInfo.recordCountPerPage} + ${rvVO.pageUnit} + ${rvVO.pageIndex}
+	                    	</div>
+	                        <div class="b-img">
+	                        	<c:if test="${not empty item.atchFileNm}">
+									<c:url var="thumbUrl" value="/cmm/fms/getThumbImage.do">
+										<c:param name="thumbYn" value="Y"/>
+										<c:param name="atchFileNm" value="${item.atchFileNm}" />
+									</c:url>                        	
+									<img src="${thumbUrl}" alt="썸네일" />
+	                        	</c:if>
+	                        	<c:if test="${empty item.atchFileNm}">
+	                        		<img src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
+	                        	</c:if>
+	                        </div>
+	                        
+	                        <div class="b-wrap">
 	                        <div class="b-title">
 	                            <a href="/review/select.do?reviewId=${item.reviewId}"><c:out value="${item.reviewSj}" /> </a>
 	                            <input type="hidden" name="reviewId" value="${item.reviewId}" />
+	                            <input type="hidden" name="pageIndex" value="${rvVO.pageIndex}" />
+	                        </div>
+	                        <div class="b-content">
+	                        	<p><c:out value="${item.reviewCn}" /> </p>
 	                        </div>
 	                        <div class="b-txt">
 	                            <span><c:out value="${item.frstRegisterId}" /></span>
 	                            <em><fmt:formatDate value="${item.frstRegistPnttm}" pattern="yyyy-MM-dd"/></em>
 	                        </div>
+	                        </div>
+	                        
 	                    </div>
                 	</c:forEach>
                     
+                </div>
+                
+                <div id="paging">
+                	<c:url var="pageUrl" value="/review/selectList.do${_BASE_PARAM}" />
+                	<c:set var="pagingParam"><c:out value="${pageUrl}"/></c:set>
+                	<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="${pagingParam}"/>
                 </div>
                 
                 <div class="">

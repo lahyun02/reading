@@ -12,7 +12,12 @@
 	        	<entry key="Globals.fileStorePath" value="/user/file/sht/"/>
 	        	<entry key="Globals.addedOptions" value="false"/>
 	        	
+	        	<!-- 첨부파일이 저장되는 경로 -->
 	        	<entry key="review.fileStorePath" value="${Globals.File}/upload/review/"/>
+	        	
+	        	<!-- 썸네일 기본 크기(가로 세로) -->
+	        	<entry key="photoThumbWidth" value="350" />
+	        	<entry key="photoThumbHeight" value="250" />
 	        </map>
 		</property>
 	</bean>
