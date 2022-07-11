@@ -59,11 +59,10 @@ em {
     
 }
 #rvList-section .rvList-wrap .box {
-    background: lightgray;
+    background: #fff;
     position: relative;
     border-radius: 20px;
-    
-    
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
     /* display: table-cell; */
 }
 #rvList-section .rvList-wrap .b-img {
@@ -74,7 +73,7 @@ em {
     /* background: lightpink; */
 }
 #rvList-section .rvList-wrap .b-wrap {
-	padding: 0px;
+	padding: 20px;
 }
 #rvList-section .rvList-wrap .b-img img {
 	width: 100%;
@@ -89,7 +88,7 @@ em {
 }
 
 #rvList-section .rvList-wrap .b-title {
-    padding-top: 20px;
+    /* padding-top: 20px; */
 }
 #rvList-section .rvList-wrap .b-title a {
     font-size: 20px;
@@ -104,7 +103,6 @@ em {
 	padding-top: 10px;
 }
 #rvList-section .rvList-wrap .b-content p {
-	width: 350px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

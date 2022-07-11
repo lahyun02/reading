@@ -88,6 +88,7 @@
 	</div>
 </div>
 <script>
+
 $(document).ready(function(){
 	//게시글 삭제
 	$("#btn-del").click(function(){
