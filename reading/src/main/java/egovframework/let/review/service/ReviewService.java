@@ -22,7 +22,10 @@ public interface ReviewService {
 	public void deleteReview(ReviewVO rvVO) throws Exception;
 	
 	//Review 목록 수 
-	public int selectReviewListCnt(ReviewVO rvVO) throws Exception; 
+	public int selectReviewListCnt(ReviewVO rvVO) throws Exception;
+	
+	//Main Review 조회순 
+	public List<EgovMap> selectMainReview() throws Exception; 
 	
 	
 	

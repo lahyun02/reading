@@ -25,6 +25,9 @@
 <body>
 <%@include file="/WEB-INF/jsp/main/jsp/menu.jsp"%>
 <div id="container">
+	
+	
+	
         
         <!-- 섹션 -메인 -->
         <section id="main-section">
@@ -37,7 +40,22 @@
                 <!-- Swiper -->
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                    <div class="swiper-slide s-img1">
+                    
+                    <c:forEach var="result" items="${resultList}">
+						<div class="swiper-slide">
+	                        <div class="s-bg">
+	                            <span class="s-btn">
+	                            	<c:url var="selectUrl" value="/review/select.do">
+										<c:param name="reviewId" value="${result.reviewId}"></c:param>
+									</c:url>
+	                            	<a href="${selectUrl}">바로가기</a>
+	                            </span>
+	                        </div>
+                    	</div>
+					</c:forEach>
+                    
+                    
+                    <%-- <div class="swiper-slide s-img1">
                         <div class="s-bg">
                             <span class="s-btn"><a href="#">바로가기</a></span>
                         </div>
@@ -66,7 +84,9 @@
                         <div class="s-bg">
                             <span class="s-btn"><a href="#">바로가기</a></span>
                         </div>
-                    </div>
+                    </div> --%>
+                    
+                    
                     
                     
                     </div>

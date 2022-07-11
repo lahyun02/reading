@@ -179,7 +179,7 @@ $(function(){
 					<a href="#none" id="btn-rgt" class="btn spot">등록</a> 
 				</c:otherwise>
 			</c:choose>
-			<c:url var="listUrl" value="/board/selectList.do"/>
+			<c:url var="listUrl" value="/review/selectList.do"/>
 			<a href="${listUrl}" class="btn">취소</a>
 		</div>
 	</form>

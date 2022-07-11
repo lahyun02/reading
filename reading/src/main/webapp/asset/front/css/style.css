@@ -92,32 +92,32 @@ body {
     opacity: 1;
 }
 
-.s-img1 {
+.swiper-slide:nth-child(1) {
     background: url(../../images/main/main_book01.jpeg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.s-img2 {
+.swiper-slide:nth-child(2) {
     background: url(../../images/main/main_book02.jpeg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.s-img3 {
+.swiper-slide:nth-child(3) {
     background: url(../../images/main/main_book03.jpeg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.s-img4 {
+.swiper-slide:nth-child(4) {
     background: url(../../images/main/main_book04.jpeg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.s-img5 {
+.swiper-slide:nth-child(5) {
     background: url(../../images/main/main_book04.jpeg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.s-img6 {
+.swiper-slide:nth-child(6) {
     background: url(../../images/main/main_book04.jpeg);
     background-size: 100% 100%;
     background-repeat: no-repeat;

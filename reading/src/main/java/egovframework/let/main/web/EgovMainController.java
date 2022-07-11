@@ -1,5 +1,6 @@
 package egovframework.let.main.web;
 
+import java.util.List;
 import java.util.Map;
 
 import egovframework.com.cmm.ComDefaultVO;
@@ -7,7 +8,9 @@ import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
-
+import egovframework.let.review.service.ReviewService;
+import egovframework.let.review.service.ReviewVO;
+import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import javax.annotation.Resource;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -37,6 +41,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  */
 @Controller@SessionAttributes(types = ComDefaultVO.class)
 public class EgovMainController {
+	
+	//책공간 추가 
+	@Resource(name = "reviewService")
+	private ReviewService reviewService;
 
 	/**
 	 * EgovBBSManageService
@@ -98,9 +106,12 @@ public class EgovMainController {
 	}
 	
 	@RequestMapping(value = "/index.do")
-	public String index(HttpServletRequest request, ModelMap model) throws Exception {
+	public String index(@ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		model.addAttribute("USER_INFO", user);
+		
+		List<EgovMap> resultList = reviewService.selectMainReview();
+		model.addAttribute("resultList", resultList); 
 		
 		return "main/Index";
 	}

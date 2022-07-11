@@ -56,9 +56,20 @@ public class ReviewVO extends ComDefaultVO implements Serializable {
     /** 페이지갯수 */
     private int pageUnit = 9;
     
-    
+    //썸네일 이름
+    private String atchFileNm;
     
 
+	public String getAtchFileNm() {
+		return atchFileNm;
+	}
+
+	public void setAtchFileNm(String atchFileNm) {
+		this.atchFileNm = atchFileNm;
+	}
+
+	
+	
 	public int getPageUnit() {
 		return pageUnit;
 	}

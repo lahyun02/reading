@@ -47,6 +47,25 @@
 					</dd>
 				</dl>
 				
+				<%-- <c:if test="${not empty result.atchFileNm}">
+					<c:url var="thumbUrl" value="/cmm/fms/getSelectImage.do">  
+						<c:param name="thumbYn" value="Y" />
+						<c:param name="atchFileNm" value="${result.atchFileNm}"/>
+					</c:url>
+					<img src="${thumbUrl}" alt=""/>
+				</c:if> --%>
+				<c:choose>
+					<c:when test="${not empty result.atchFileNm}">
+						<c:url var="selectUrl" value="/cmm/fms/getSelectImage.do">  
+							<c:param name="thumbYn" value="Y" />
+							<c:param name="atchFileNm" value="${result.atchFileNm}"/>
+						</c:url>
+						<img src="${selectUrl}" alt=""/>
+					</c:when>
+					<c:otherwise>
+						<img src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
+					</c:otherwise>				
+				</c:choose>			
 				<div class="view_cont">
 					<c:out value="${result.reviewCn}" escapeXml="false" />
 				</div>

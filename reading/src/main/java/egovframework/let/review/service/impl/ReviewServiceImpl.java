@@ -40,6 +40,9 @@ public class ReviewServiceImpl extends EgovAbstractServiceImpl implements Review
 	//Review글 상세조회하기 
 	@Override
 	public ReviewVO selectReview(ReviewVO rvVO) throws Exception {
+		//조회수 업 
+		reviewMapper.updateViewCnt(rvVO);
+		
 		return reviewMapper.selectReview(rvVO);
 	}
 	
@@ -59,6 +62,12 @@ public class ReviewServiceImpl extends EgovAbstractServiceImpl implements Review
 	@Override
 	public int selectReviewListCnt(ReviewVO rvVO) throws Exception {
 		return reviewMapper.selectReviewListCnt(rvVO);
+	}
+	
+	//Main Review 조회순 
+	@Override
+	public List<EgovMap> selectMainReview() throws Exception {
+		return reviewMapper.selectMainReview();
 	}
 	
 

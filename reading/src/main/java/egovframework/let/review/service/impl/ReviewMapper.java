@@ -18,6 +18,9 @@ public interface ReviewMapper {
 	//Review글 상세조회하기 
 	ReviewVO selectReview(ReviewVO rvVO) throws Exception;
 	
+	// 조회수 업 
+	void updateViewCnt(ReviewVO rvVO) throws Exception;  
+	
 	//Review 수정하기
 	void updateReview(ReviewVO rvVO) throws Exception;
 	
@@ -25,7 +28,11 @@ public interface ReviewMapper {
 	void deleteReview(ReviewVO rvVO) throws Exception;
 	
 	//Review 목록 수 
-	int selectReviewListCnt(ReviewVO rvVO) throws Exception; 
+	int selectReviewListCnt(ReviewVO rvVO) throws Exception;
+	
+	//Main Review 조회순 
+	List<EgovMap> selectMainReview() throws Exception;
+
 	
 	
 

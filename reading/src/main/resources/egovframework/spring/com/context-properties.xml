@@ -18,6 +18,10 @@
 	        	<!-- 썸네일 기본 크기(가로 세로) -->
 	        	<entry key="photoThumbWidth" value="350" />
 	        	<entry key="photoThumbHeight" value="250" />
+	        	
+	        	<!-- 상세조회 첨부파일 사진 보이기 -->
+	        	<entry key="photoSelectWidth" value="800" />
+	        	<entry key="photoSelectHeight" value="800" />
 	        </map>
 		</property>
 	</bean>
