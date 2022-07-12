@@ -47,7 +47,6 @@ $(function(){
         menubar: false,
         plugins: plugins,
         toolbar: edit_toolbar,
-        
         /*** image upload ***/
         image_title: true,
         /* enable automatic uploads of images represented by blob or data URIs*/
@@ -103,6 +102,7 @@ $(function(){
 
 </head>
 <body>
+<%@include file="/WEB-INF/jsp/main/jsp/menu.jsp"%>
 
 <c:choose>
 	<c:when test="${not empty result.reviewId}">
@@ -203,6 +203,8 @@ $(function(){
 	</form>
 </div>
 </div>
+
+<%@include file="/WEB-INF/jsp/main/jsp/footer.jsp"%>
 
 <script>
 	$(document).ready(function() {

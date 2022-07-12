@@ -188,7 +188,7 @@
 			  LIMIT 1
 			) AS ATCH_FILE_NM
 		FROM REVIEW A 
-		order by INQIRE_CO DESC 
+		order by INQIRE_CO DESC, FRST_REGIST_PNTTM, REVIEW_SJ asc
 		limit 6 offset 1;
 	</select>
 	

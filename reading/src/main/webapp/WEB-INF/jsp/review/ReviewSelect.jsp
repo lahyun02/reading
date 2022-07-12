@@ -57,26 +57,19 @@
 					</dd>
 				</dl>
 				
-				<%-- <c:if test="${not empty result.atchFileNm}">
-					<c:url var="thumbUrl" value="/cmm/fms/getSelectImage.do">  
-						<c:param name="thumbYn" value="Y" />
-						<c:param name="atchFileNm" value="${result.atchFileNm}"/>
-					</c:url>
-					<img src="${thumbUrl}" alt=""/>
-				</c:if> --%>
-				<c:choose>
-					<c:when test="${not empty result.atchFileNm}">
-						<c:url var="selectUrl" value="/cmm/fms/getSelectImage.do">  
-							<c:param name="thumbYn" value="Y" />
-							<c:param name="atchFileNm" value="${result.atchFileNm}"/>
-						</c:url>
-						<img src="${selectUrl}" alt=""/>
-					</c:when>
-					<c:otherwise>
-						<img src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
-					</c:otherwise>				
-				</c:choose>			
 				<div class="view_cont">
+					<c:choose>
+						<c:when test="${not empty result.atchFileNm}">
+							<c:url var="selectUrl" value="/cmm/fms/getSelectImage.do">  
+								<c:param name="thumbYn" value="Y" />
+								<c:param name="atchFileNm" value="${result.atchFileNm}"/>
+							</c:url>
+							<img src="${selectUrl}" alt=""/>
+						</c:when>
+						<c:otherwise>
+							<img src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
+						</c:otherwise>				
+					</c:choose>			
 					<c:out value="${result.reviewCn}" escapeXml="false" />
 				</div>
 			</div>
@@ -86,22 +79,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<%-- 제목 : ${result.reviewSj} 
-	
-	작성자 id : ${result.frstRegisterId} 
-	
-	내용 : ${result.reviewCn}
-	
-	조회수 : ${result.inqireCo}
-	
-	작성일 : <fmt:formatDate value="${result.frstRegistPnttm}" pattern="yyyy-MM-dd" />  
-	
-	첨부파일목록 : 
-	<c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
-		<c:param name="param_atchFileId" value="${result.atchFileId}" />	
-	</c:import> 
-	--%>
 	
 	<c:url var="uptUrl" value="/review/reviewRegist.do">
 		<c:param name="reviewId" value="${result.reviewId}" />
