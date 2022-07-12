@@ -137,6 +137,24 @@ $(function(){
 					<td><c:out value="${USER_INFO.id}" /></td>
 				</tr>
 				<tr>
+					<th scope="row">책제목</th>
+					<td>
+						<input type="text" id="rvBookSj" name="rvBookSj" title="" class="" value="${result.rvBookSj}" />
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">책작가</th>
+					<td>
+						<input type="text" id="rvBookWr" name="rvBookWr" title="" class="" value="${result.rvBookWr}" />
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">출판사</th>
+					<td>
+						<input type="text" id="rvBookPb" name="rvBookPb" title="" class="" value="${result.rvBookPb}" />
+					</td>
+				</tr>
+				<tr>
 					<th scope="row">내용</th>
 					<td>
 						<textarea id="reviewCn" name="reviewCn" rows="30" cols="50" title="내용입력"><c:out value="${result.reviewCn}" /></textarea>

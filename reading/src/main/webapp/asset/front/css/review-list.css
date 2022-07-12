@@ -109,16 +109,121 @@ em {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+/*  */
+.cnt-page strong {
+	color: #6bb5d6;
+}
 
+/* 검색영역 */
+#bbs_search { line-height: 37px;  margin-bottom: 30px; background:#f7f7f7;text-align:center;padding:20px 0;border: none; }
+#paging + #bbs_search { text-align:center;background: none repeat scroll 0 0 #F6F6F6; border: 1px solid #E9E9E9;padding:5px 0;line-height: 37px;  margin-bottom: 30px; }
+#bbs_search .inp_s { border: 1px solid #DDDDDD; height: 40px; width:200px;vertical-align: middle; margin-right:3px; }
+#bbs_search fieldset { border: none; }
+#bbs_search legend { display:none; }
+#bbs_search .hdn:not(caption), .hidden {
+    position: absolute;
+    top: -99999px;
+    left: -99999px;
+    font-size: 1px;
+    color: #fff;
+    opacity: 0;
+}
+
+#bbs_search select {
+    font-family: "Noto Sans KR", "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", Helvetica,"돋움", Dotum, "굴림", Gulim, sans-serif;
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    font-size: 14px;
+    box-sizing: border-box;
+    width: auto;
+    height: 40px;
+    cursor: pointer;
+    padding: 0 30px 0 10px;
+    vertical-align: top;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 13px;
+    color: rgba(0,0,0,.5);
+    background: url(/asset/LYTTMP_0000000000000/images/common/ico_arr_b.svg) calc(100% - 10px) center no-repeat #fff;
+    background-size: 12px;
+}
+
+.bbtn_s a, .bbtn_s input, .bbtn_s button {
+    display: inline-block;
+    box-sizing: border-box;
+    background: #6bb5d6;
+    border: 1px solid #6bb5d6;
+    height: 40px;
+    line-height: 38px;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 2px;
+}    
+    
 /* PAGING */
 #paging { width:100%; color:#000; font-style:normal; margin:50px 0 30px; font-weight:bold; text-align:center; }
 #paging img { vertical-align:middle; }
 #paging a { display:inline-block; width:31px; height:31px; line-height:31px; vertical-align:middle; border:none; margin:0 3px 0 2px; font-size:14px; color:#000; border-radius:1px;border-color:#fff;}
 #paging a:hover { background-color:#fafafa; color:#000; }
 #paging a span { position:absolute; z-index:-1;visibility:hidden; }
-#paging .first { position:relative; background:url("images/common/btn_first.svg") center no-repeat; border-color:#dee2e6;}
-#paging .prev { position:relative; background:url("images/common/btn_prev.svg") center no-repeat; border-color:#dee2e6; margin-right:30px;}
-#paging .next { position:relative; background:url("images/common/btn_next.svg") center no-repeat; border-color:#dee2e6; margin-left:30px;}
-#paging .last { position:relative; background:url("images/common/btn_last.svg") center no-repeat; border-color:#dee2e6;}
+#paging .first { position:relative; background:url("/asset/LYTTMP_0000000000000/images/common/btn_first.svg") center no-repeat; border-color:#dee2e6;}
+#paging .prev { position:relative; background:url("/asset/LYTTMP_0000000000000/images/common/btn_prev.svg") center no-repeat; border-color:#dee2e6; margin-right:30px;}
+#paging .next { position:relative; background:url("/asset/LYTTMP_0000000000000/images/common/btn_next.svg") center no-repeat; border-color:#dee2e6; margin-left:30px;}
+#paging .last { position:relative; background:url("/asset/LYTTMP_0000000000000/images/common/btn_last.svg") center no-repeat; border-color:#dee2e6;}
 #paging .current { display:inline-block;background:#6bb5d6;border:none;color:#fff;width:31px;height:31px;line-height:31px;vertical-align:middle;border-radius:1px;border-radius:2px;}
 #rvList-section #paging { float:none; }
+
+/* 버튼 */
+.btn-cont {
+	display: block;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    box-sizing: border-box;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgb(0 0 0 / 0%);
+    backface-visibility: hidden;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    transition-property: color, background-color;
+    border-radius: 0;
+    padding: 0;
+    margin: 30px auto;
+    border-radius: 2px;
+}
+
+.ar {
+    text-align: right !important;
+}
+.btn.spot {
+    background: #6bb5d6;
+    border: none;
+    color: #fff;
+}
+.btn {
+    padding: 20px 25px;
+    height: 40px;
+    line-height: 38px;
+    font-size: 14px;
+    min-width: 70px;
+    border-radius: 16px;
+}
+
+
+.btn i {
+    display: inline-block;
+    vertical-align: middle;
+    height: 16px;
+    width: 16px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: -2px 5px 0 0;
+}
+
+.ico-check-spot {
+    background-image: url(/asset/LYTTMP_0000000000000/images/common/ico_check_spot.svg);
+}

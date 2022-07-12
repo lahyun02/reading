@@ -59,6 +59,39 @@ public class ReviewVO extends ComDefaultVO implements Serializable {
     //썸네일 이름
     private String atchFileNm;
     
+    //리뷰책 제목
+    private String rvBookSj;
+    
+    //리뷰책 작가
+    private String rvBookWr;
+    
+    //리뷰책 출판사
+    private String rvBookPb;
+    
+    
+	public String getRvBookSj() {
+		return rvBookSj;
+	}
+
+	public void setRvBookSj(String rvBookSj) {
+		this.rvBookSj = rvBookSj;
+	}
+
+	public String getRvBookWr() {
+		return rvBookWr;
+	}
+
+	public void setRvBookWr(String rvBookWr) {
+		this.rvBookWr = rvBookWr;
+	}
+
+	public String getRvBookPb() {
+		return rvBookPb;
+	}
+
+	public void setRvBookPb(String rvBookPb) {
+		this.rvBookPb = rvBookPb;
+	}
 
 	public String getAtchFileNm() {
 		return atchFileNm;

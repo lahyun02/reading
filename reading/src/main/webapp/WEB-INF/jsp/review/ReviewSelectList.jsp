@@ -41,10 +41,27 @@
                 <h2>책리뷰</h2>
             </div>
             <div class="rv-container">
-            	
+            
+            	<%-- 검색 영역 --%>
+            	<div id="bbs_search">
+            		<form action="/review/selectList.do" method="post" name="frm" >
+            			<fieldset>
+            				<legend>검색조건입력폼</legend>
+            				<label for="ftext" class="hdn">검색분류선택</label>
+            				<select name="searchCondition" id="ftext">
+            					<option value="0" <c:if test="${rvVO.searchCondition eq '0'}">selected="selected"</c:if>>제목</option>
+            					<option value="1" <c:if test="${rvVO.searchCondition eq '1'}">selected="selected"</c:if>>내용</option>
+            					<option value="2" <c:if test="${rvVO.searchCondition eq '2'}">selected="selected"</c:if>>작성자</option>
+            				</select>
+            				<label for="inp_text" class="hdn">검색어입력</label>
+            				<input name="searchKeyword" value='<c:out value="${rvVO.searchKeyword}"/>' type="text" class="inp_s" id="inp_text">
+            				<span class="bbtn_s"><input type="submit" value="검색" title="검색" /></span>
+            			</fieldset>
+            		</form>
+            	</div>
             	
                 <div class="cnt-page">
-                    총 게시물 <strong><c:out value="${paginationInfo.totalRecordCount}"/></strong>건 | 현재페이지 <strong><c:out value="${paginationInfo.currentPageNo}"/></strong>/<c:out value="${paginationInfo.totalPageCount}"/>
+                    총 <strong><c:out value="${paginationInfo.totalRecordCount}"/></strong>건 | 현재페이지 <strong><c:out value="${paginationInfo.currentPageNo}"/></strong>/<c:out value="${paginationInfo.totalPageCount}"/>
                 	
                 </div>
                 <div class="rvList-wrap">
@@ -56,7 +73,7 @@
 	                    	</div>
 	                        <div class="b-img">
 	                        	<c:choose>
-									<c:when test="${not empty result.atchFileNm}">
+									<c:when test="${not empty item.atchFileNm}">
 										<c:url var="thumbUrl" value="/cmm/fms/getThumbImage.do">  
 											<c:param name="thumbYn" value="Y" />
 											<c:param name="atchFileNm" value="${item.atchFileNm}"/>
@@ -105,23 +122,7 @@
                     
                 </div>
                 
-                <%-- 검색 영역 --%>
-            	<div id="bbs_search">
-            		<form action="/review/selectList.do" method="post" name="frm" >
-            			<fieldset>
-            				<legend>검색조건입력폼</legend>
-            				<label for="ftext" class="hdn">검색분류선택</label>
-            				<select name="searchCondition" id="ftext">
-            					<option value="0" <c:if test="${rvVO.searchCondition eq '0'}">selected="selected"</c:if>>제목</option>
-            					<option value="1" <c:if test="${rvVO.searchCondition eq '1'}">selected="selected"</c:if>>내용</option>
-            					<option value="2" <c:if test="${rvVO.searchCondition eq '2'}">selected="selected"</c:if>>작성자</option>
-            				</select>
-            				<label for="inp_text" class="hdn">검색어입력</label>
-            				<input name="searchKeyword" value='<c:out value="${rvVO.searchKeyword}"/>' type="text" class="inp_s" id="inp_text">
-            				<span class="bbtn_s"><input type="submit" value="검색" title="검색" /></span>
-            			</fieldset>
-            		</form>
-            	</div>
+                
             	
                 
                 <div id="paging">

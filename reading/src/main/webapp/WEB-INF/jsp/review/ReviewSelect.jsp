@@ -38,6 +38,16 @@
 					<dt>조회수</dt>
 					<dd><c:out value="${result.inqireCo}"></c:out></dd>
 				</dl>
+				
+				<dl class="info_view2">
+					<dt>책제목</dt>
+					<dd><c:out value="${result.rvBookSj}"></c:out></dd>
+					<dt>책작가</dt>
+					<dd><c:out value="${result.rvBookWr}" /></dd>
+					<dt>출판사</dt>
+					<dd><c:out value="${result.rvBookPb}" /></dd>
+				</dl>			
+				
 				<dl class="tit_view"> 
 					<dt>첨부파일목록</dt>
 					<dd>

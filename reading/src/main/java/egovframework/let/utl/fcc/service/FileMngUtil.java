@@ -91,6 +91,7 @@ public class FileMngUtil {
 			//파일저장
 			if(!"".equals(originFilename)) {
 				filePath = storePathString + File.separator + newName;
+				System.out.println("filePath:" + filePath);  
 				file.transferTo(new File(filePath));
 			}
 			fvo = new FileVO();

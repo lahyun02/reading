@@ -44,6 +44,18 @@
                     <c:forEach var="result" items="${resultList}">
 						<div class="swiper-slide">
 	                        <div class="s-bg">
+	                        	<c:choose>
+									<c:when test="${not empty result.atchFileNm}">
+										<c:url var="thumbUrl" value="/cmm/fms/getThumbImage.do">  
+										<c:param name="thumbYn" value="Y" />
+										<c:param name="atchFileNm" value="${result.atchFileNm}"/>
+									</c:url>
+									<img src="${thumbUrl}" alt=""/>
+									</c:when>
+									<c:otherwise>
+										<img src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
+									</c:otherwise>				
+	                        	</c:choose>	
 	                            <span class="s-btn">
 	                            	<c:url var="selectUrl" value="/review/select.do">
 										<c:param name="reviewId" value="${result.reviewId}"></c:param>
