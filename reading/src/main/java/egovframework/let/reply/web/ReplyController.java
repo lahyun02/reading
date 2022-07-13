@@ -54,7 +54,6 @@ public class ReplyController {
 		
 		List<EgovMap> resultList = replyService.selectReplyList(rpVO);
 		model.addAttribute("resultList", resultList); 
-		System.out.println(resultList);
 		
 		return "/reply/ReplyList";
 	}
@@ -63,8 +62,9 @@ public class ReplyController {
 	@RequestMapping(value = "/reply/delete.do")
 	public String delete(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, Model model) throws Exception{
 		System.out.println(rpVO); 
+		System.out.println("replyNo: " + rpVO.getRepNo()); 
 		replyService.deleteReply(rpVO);
-		
+		System.out.println("delete 댓글 삭제 후 실행 ");
 		return "/reply/ReplyList";
 	}
 	

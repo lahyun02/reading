@@ -42,7 +42,7 @@
 		)
 	</insert>
 	
-	<update id="deleteReply">
+	<update id="deleteReply" parameterType="egovframework.let.reply.service.ReplyVO"> 
 	 UPDATE REPLY SET
 	 	USE_AT = 'N'
 	 WHERE REP_NO = #{repNo} 

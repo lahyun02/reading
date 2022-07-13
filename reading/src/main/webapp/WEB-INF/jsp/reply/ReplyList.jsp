@@ -22,11 +22,20 @@
 				<td><c:out value="${result.repWriter}" /></td>
 				<td><c:out value="${result.repContent}" /></td>
 				<td><fmt:formatDate value="${result.repRegDate}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-				<c:url var="delUrl" value="/reply/delete.do">
+				<td> 
+					${result.repNo} 
+					<form action="/reply/delete.do" method="post" id="delFrm">
+						<input type="hidden" id="repReviewId" name="repReviewId" value="${result.repReviewId}" />
+						<input type="hidden" id="repNo" name="repNo" value="${result.repNo}" />
+						<input type="button" class="btn-del" value="삭제" />  
+					</form>
+				</td>
+				
+				<%-- <c:url var="delUrl" value="/reply/delete.do">
 					<c:param name="repReviewId" value="${result.repReviewId}" />
 					<c:param name="repNo" value="${result.repNo}" />
 				</c:url>
-				<td><a href="${delUrl}" class="btn-del">삭제</a></td>
+				<td><a href="${delUrl}" class="btn-del">삭제</a></td> --%>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -138,11 +138,12 @@ $(document).ready(function(){
 	});
 	
 	$(".btn-del").click(function(){
-		var repNo = $("#repNo").val();
+		$("#delFrm").submit(); 
+		/* var repNo = $("#repNo").val(); */
 		$.ajax({
 			  url: "/reply/delete.do",
 			  method: "POST",
-			  data: { repReviewId : $('#repReviewId').val(), REP_NO : repNo  },
+			  data: { repReviewId : $('#repReviewId').val(), REP_NO : $("#repNo").val() },
 			  dataType: "html",
 			  success : function(data){
 				  $.ajax({
@@ -155,7 +156,7 @@ $(document).ready(function(){
 					  }, error : function(jqXHR, textStatus){
 						  alert( "Request failed: " + textStatus );
 					  }
-					});	
+					})
 					  
 				  }, error : function(jqXHR, textStatus){
 					  alert( "Request failed: " + textStatus );
