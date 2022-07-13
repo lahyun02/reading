@@ -5,6 +5,7 @@
 <typeAliases>
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias alias="reviewVO" type="egovframework.let.review.service.ReviewVO"/>
+	<typeAlias alias="replyVO" type="egovframework.let.reply.service.ReplyVO"/>
 
 </typeAliases>
 </configuration>

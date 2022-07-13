@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Language" content="ko" >
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimun-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>책공간</title>
 <!-- BBS Style -->
 <link href="/asset/BBSTMP_0000000000001/style.css" rel="stylesheet" />
@@ -72,6 +72,20 @@
 					</c:choose>			
 					<c:out value="${result.reviewCn}" escapeXml="false" />
 				</div>
+				
+				<form action="/reply/list.do" method="post">
+					<input type="hidden" id="repReviewId" name="repReviewId" value="${result.reviewId}" />
+					<input type="hidden" id="repWriter" name="repWriter" value="${USER_INFO.id}" />
+					<textarea id="repContent" name="repContent" rows="10" cols="80"></textarea>
+					<input type="button" id="saveBtn" value="저장" />  
+				</form>
+				<div id="reply-box">
+				
+					<c:import url="/reply/list.do" charEncoding="utf-8">
+						<c:param name="repReviewId" value="${result.reviewId}" />
+					</c:import>
+				</div> 
+				
 			</div>
 			
 			<div class="btn-cont ar">
@@ -106,7 +120,61 @@ $(document).ready(function(){
 			return false;
 		}		
 	});
+	
+	$("#saveBtn").click(function(){
+		$.ajax({
+			  url: "/reply/list.do",
+			  method: "POST",
+			  data: { repReviewId : $('#repReviewId').val(), repWriter : $('#repWriter').val(), repContent : $('#repContent').val()  },
+			  dataType: "html",
+			  success : function(data){
+				  $("#reply-box").html(data);
+			  }, error : function(jqXHR, textStatus){
+				  alert( "Request failed: " + textStatus );
+			  }
+		}).done(function(data) {
+			  //$("#reply-box").html(data);
+		});	
+	});
+	
+	$(".btn-del").click(function(){
+		var repNo = $("#repNo").val();
+		$.ajax({
+			  url: "/reply/delete.do",
+			  method: "POST",
+			  data: { repReviewId : $('#repReviewId').val(), REP_NO : repNo  },
+			  dataType: "html",
+			  success : function(data){
+				  $.ajax({
+					  url: "/reply/list.do",
+					  method: "POST",
+					  data: { repReviewId : $('#repReviewId').val(), repWriter : $('#repWriter').val(), repContent : $('#repContent').val()  },
+					  dataType: "html",
+					  success : function(data){
+						  $("#reply-box").html(data);
+					  }, error : function(jqXHR, textStatus){
+						  alert( "Request failed: " + textStatus );
+					  }
+					});	
+					  
+				  }, error : function(jqXHR, textStatus){
+					  alert( "Request failed: " + textStatus );
+				  }
+		}).done(function(data) {
+			  //$("#reply-box").html(data);
+		});	
+	});
+	
+	
+	
+	
+	
+	
 });
+
+
+
+	
 </script>
 
 </body>

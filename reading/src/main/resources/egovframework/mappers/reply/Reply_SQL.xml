@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.let.reply.service.impl.ReplyMapper">
+	
+	<resultMap id="reply" type="egovframework.let.reply.service.ReplyVO">
+		<result property="repNo" column="REP_NO"/>
+		<result property="repContent" column="REP_CONTENT"/>
+		<result property="repWriter" column="REP_WRITER"/>
+		<result property="repRegDate" column="REP_REG_DATE"/>
+		<result property="repReviewId" column="REP_REVIEW_ID"/>
+		<result property="useAt" column="USE_AT"/>
+	</resultMap>
+	
+	<select id="selectReplyList" resultType="egovMap" parameterType="egovframework.let.reply.service.ReplyVO">  
+		SELECT 
+			REP_NO
+			, REP_CONTENT
+			, REP_WRITER
+			, REP_REG_DATE
+			, REP_REVIEW_ID
+		FROM REPLY
+		WHERE REP_REVIEW_ID = #{repReviewId}
+			AND USE_AT = 'Y'
+	</select>
+	
+	
+	<insert id="insertReply">
+		INSERT INTO REPLY (
+			REP_NO
+			, REP_CONTENT
+			, REP_WRITER
+			, REP_REG_DATE
+			, REP_REVIEW_ID
+			, USE_AT
+		) VALUES (
+			  #{repNo}
+			, #{repContent}
+			, #{repWriter}
+			, NOW()
+			, #{repReviewId}
+			, 'Y'
+		)
+	</insert>
+	
+	<update id="deleteReply">
+	 UPDATE REPLY SET
+	 	USE_AT = 'N'
+	 WHERE REP_NO = #{repNo} 
+	</update>
+	
+</mapper>

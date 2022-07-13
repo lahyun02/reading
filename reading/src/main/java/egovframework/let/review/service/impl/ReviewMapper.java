@@ -31,7 +31,7 @@ public interface ReviewMapper {
 	int selectReviewListCnt(ReviewVO rvVO) throws Exception;
 	
 	//Main Review 조회순 
-	List<EgovMap> selectMainReview() throws Exception;
+	List<EgovMap> selectMainReview(ReviewVO rvVO) throws Exception;
 
 	
 	

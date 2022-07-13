@@ -66,8 +66,8 @@ public class ReviewServiceImpl extends EgovAbstractServiceImpl implements Review
 	
 	//Main Review 조회순 
 	@Override
-	public List<EgovMap> selectMainReview() throws Exception {
-		return reviewMapper.selectMainReview();
+	public List<EgovMap> selectMainReview(ReviewVO rvVO) throws Exception {
+		return reviewMapper.selectMainReview(rvVO);
 	}
 	
 

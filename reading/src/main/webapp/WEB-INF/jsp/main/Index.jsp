@@ -41,7 +41,7 @@
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                     
-                    <c:forEach var="result" items="${resultList}">
+                    <c:forEach var="result" items="${resultList}" varStatus="status">
 						<div class="swiper-slide">
 	                        <div class="s-bg">
 	                        	<c:choose>
@@ -60,7 +60,7 @@
 	                            	<c:url var="selectUrl" value="/review/select.do">
 										<c:param name="reviewId" value="${result.reviewId}"></c:param>
 									</c:url>
-	                            	<a href="${selectUrl}">바로가기</a>
+	                            	<a href="${selectUrl}">${status.count}==바로가기</a>
 	                            </span>
 	                        </div>
                     	</div>

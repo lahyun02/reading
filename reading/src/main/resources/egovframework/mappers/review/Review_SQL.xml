@@ -164,7 +164,7 @@
 			AND FRST_REGISTER_ID = #{userId}
 		</if>
 	</delete>
-	
+
 	
 	
 	<select id="selectMainReview" resultType="egovMap">
@@ -189,7 +189,7 @@
 			) AS ATCH_FILE_NM
 		FROM REVIEW A 
 		order by INQIRE_CO DESC, FRST_REGIST_PNTTM, REVIEW_SJ asc
-		limit 6 offset 1;
+		limit 6 offset 0;
 	</select>
 	
 </mapper>

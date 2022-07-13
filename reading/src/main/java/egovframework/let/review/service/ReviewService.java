@@ -25,7 +25,7 @@ public interface ReviewService {
 	public int selectReviewListCnt(ReviewVO rvVO) throws Exception;
 	
 	//Main Review 조회순 
-	public List<EgovMap> selectMainReview() throws Exception; 
+	public List<EgovMap> selectMainReview(ReviewVO rvVO) throws Exception; 
 	
 	
 	
