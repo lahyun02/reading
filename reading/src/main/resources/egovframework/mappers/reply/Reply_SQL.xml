@@ -11,7 +11,7 @@
 		<result property="useAt" column="USE_AT"/>
 	</resultMap>
 	
-	<select id="selectReplyList" resultType="egovMap" parameterType="egovframework.let.reply.service.ReplyVO">  
+	<select id="selectReplyList" resultType="EgovMap" parameterType="egovframework.let.reply.service.ReplyVO">  
 		SELECT 
 			REP_NO
 			, REP_CONTENT

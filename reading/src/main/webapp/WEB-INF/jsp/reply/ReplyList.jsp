@@ -27,6 +27,7 @@
 					<form action="/reply/delete.do" method="post" id="delFrm">
 						<input type="hidden" id="repReviewId" name="repReviewId" value="${result.repReviewId}" />
 						<input type="hidden" id="repNo" name="repNo" value="${result.repNo}" />
+						<input type="hidden" id="repContent" name="repContent" value="${result.repContent}" />
 						<input type="button" class="btn-del" value="삭제" />  
 					</form>
 				</td>

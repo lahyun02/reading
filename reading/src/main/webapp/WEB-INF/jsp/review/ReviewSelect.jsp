@@ -79,18 +79,15 @@
 					<textarea id="repContent" name="repContent" rows="10" cols="80"></textarea>
 					<input type="button" id="saveBtn" value="저장" />  
 				</form>
-				<div id="reply-box">
 				
-					<c:import url="/reply/list.do" charEncoding="utf-8">
+				<div id="reply-box">
+					<c:import url="/reply/list.do" charEncoding="utf-8"> 
 						<c:param name="repReviewId" value="${result.reviewId}" />
 					</c:import>
 				</div> 
 				
 			</div>
 			
-			<div class="btn-cont ar">
-				
-			</div>
 		</div>
 	</div>
 	
@@ -121,29 +118,71 @@ $(document).ready(function(){
 		}		
 	});
 	
+	function refreshReplyList() {
+		$.ajax({
+			url: "/reply/list.do",
+			method: "POST",
+			data: { 
+				repReviewId : $('#repReviewId').val(),
+			},
+			dataType: "html"
+			  
+		}).done(function( data ) {
+			$('#reply-box').empty();
+			console.log(data);
+			console.log("repContent : " + data.includes('name="repContent"') ); 
+			/* if(data[0].repContent) {
+			
+			for(var i = 0; i < data.length; i++) {
+				var vo = data[i];
+				console.log(vo.repReviewId, vo.repWriter, vo.repContent);
+			}  
+			}	*/
+			if(data.includes('name="repContent"')) {
+				$('#reply-box').html(data);
+			} 
+		}).fail(function( jqXHR, textStatus ) {  //요청이 실패한 경우 실행할 함수 
+			alert( "Request failed: " + textStatus );
+		});	
+		
+		
+	}
+	
+	
+	refreshReplyList();
+	
+	
 	$("#saveBtn").click(function(){
 		$.ajax({
-			  url: "/reply/list.do",
-			  method: "POST",
-			  data: { repReviewId : $('#repReviewId').val(), repWriter : $('#repWriter').val(), repContent : $('#repContent').val()  },
-			  dataType: "html",
-			  success : function(data){
-				  $("#reply-box").html(data);
-			  }, error : function(jqXHR, textStatus){
-				  alert( "Request failed: " + textStatus );
-			  }
-		}).done(function(data) {
-			  //$("#reply-box").html(data);
+		  url: "/reply/insert.do",
+		  method: "POST",
+		  data: { 
+			  repReviewId : $('#repReviewId').val()
+			  , repWriter : $('#repWriter').val()
+			  , repContent : $('#repContent').val()  
+		  },
+		  dataType: "json",
+		  
+		}).done(function(msg) {
+			
+			alert(msg.no + '개의 댓글을 저장했습니다.');  
+			$('#repContent').val('');
+			refreshReplyList();
+			//$("#reply-box").html(msg);
+		}).fail(function( jqXHR, textStatus ) {  //요청이 실패한 경우 실행할 함수 
+			alert( "Request failed: " + textStatus );
 		});	
-	});
-	
+	});	
+		
+
+	/*
 	$(".btn-del").click(function(){
-		$("#delFrm").submit(); 
-		/* var repNo = $("#repNo").val(); */
+		//$("#delFrm").submit(); 
+		
 		$.ajax({
 			  url: "/reply/delete.do",
 			  method: "POST",
-			  data: { repReviewId : $('#repReviewId').val(), REP_NO : $("#repNo").val() },
+			  data: { repReviewId : $('#repReviewId').val(), repNo : $("#repNo").val() },
 			  dataType: "html",
 			  success : function(data){
 				  $.ajax({
@@ -165,7 +204,7 @@ $(document).ready(function(){
 			  //$("#reply-box").html(data);
 		});	
 	});
-	
+*/
 	
 	
 	

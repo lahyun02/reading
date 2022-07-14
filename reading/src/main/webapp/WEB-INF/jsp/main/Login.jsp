@@ -27,6 +27,7 @@
             <!-- 로그인 폼 -->
             <form action="/login/actionLogin.do" id="frmLogin" name="frmLogin" method="post">
             	<input type="hidden" name="userSe" value="USR"/>
+            	<input type="hidden" name="address" value="${address}"/>
                 <fieldset>
                     <legend>로그인을 위한 아이디/비밀번호 입력</legend>
                     <div class="ipt-row">

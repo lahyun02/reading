@@ -2,6 +2,9 @@ package egovframework.let.reply.service;
 
 import java.util.Date;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import egovframework.com.cmm.ComDefaultVO;
 
 public class ReplyVO extends ComDefaultVO {
@@ -16,6 +19,7 @@ public class ReplyVO extends ComDefaultVO {
 	private String repWriter;
 	
 	//댓글날짜
+	@JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date repRegDate;
 	
 	//댓글리뷰글번호

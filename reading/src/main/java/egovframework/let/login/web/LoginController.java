@@ -50,11 +50,12 @@ public class LoginController {
 	
 	//로그인 
 	@RequestMapping(value = "/login/actionLogin.do")
-	public String actionLogin(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request, ModelMap model) throws Exception {
+	public String actionLogin(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request, ModelMap model, String address) throws Exception {
 		LoginVO resultVO = loginService.actionLogin(loginVO);
 		if(resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("")) {
 			request.getSession().setAttribute("LoginVO", resultVO);
-			return "forward:/index.do";
+			//return "forward:/index.do";
+			return "redirect:" + address; 
 		} else {
 			model.addAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login"));
 			return "forward:/login/loginForm.do";
@@ -64,7 +65,8 @@ public class LoginController {
 	//로그인 폼
 	@RequestMapping(value = "/login/loginForm.do")
 	public String loginForm(String loginMessage, HttpServletRequest request, ModelMap model) throws Exception {
-		
+		String address = request.getHeader("Referer");
+		model.addAttribute("address", address); 
 		System.out.println(loginMessage);
 		return "main/Login";
 	}

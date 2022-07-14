@@ -1,12 +1,16 @@
 package egovframework.let.reply.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,39 +28,56 @@ public class ReplyController {
 	@Resource(name = "replyService")
 	private ReplyService replyService;
 	
-//	@ResponseBody
-//	@RequestMapping(value = "/reply/insert.do")
-//	public String insert(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request) throws Exception {
-//		//유저 id 가져와서 ReplyVO에 저장하기
+	//댓글 조회
+	@RequestMapping(value = "/reply/list.do")
+	//@ResponseBody
+	public String selectReplyList(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, ModelMap model) throws Exception {
+		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+		rpVO.setRepWriter(user.getId());
+
+		List<EgovMap> resultList = replyService.selectReplyList(rpVO);
+		System.out.println(resultList); 
+		model.addAttribute("resultList", resultList); 
+		return "reply/ReplyList"; 
+	}
+	
+	
+	//댓글 추가
+	@RequestMapping(value = "/reply/insert.do")
+	@ResponseBody
+	public Map<String, Object> insert(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request) throws Exception {
+		//유저 id 가져와서 ReplyVO에 저장하기
+		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+		rpVO.setRepWriter(user.getId());
+		int num = replyService.insertReply(rpVO);
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(num); 
+		map.put("no", num); 
+		System.out.println(map);
+		return map;
+	}
+	
+	//댓글 목록 
+//	@RequestMapping(value = "/reply/list.do")
+//	public String list(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, Model model) throws Exception {
+//		//내용저장  //유저 id 가져와서 ReplyVO에 저장하기
+//		
+//		System.out.println(rpVO.getRepContent()); 
+//		if(!EgovStringUtil.isEmpty(rpVO.getRepContent())) {
+//			replyService.insertReply(rpVO);
+//		}
+//		
+//		rpVO.setRecordCountPerPage(Integer.MAX_VALUE);
+//		rpVO.setFirstIndex(0); 
+//		
 //		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 //		rpVO.setRepWriter(user.getId());
 //		
-//		replyService.insertReply(rpVO);
+//		List<EgovMap> resultList = replyService.selectReplyList(rpVO);
+//		model.addAttribute("resultList", resultList); 
 //		
-//		return "댓글 입력 성공";
+//		return "/reply/ReplyList";
 //	}
-	
-	//댓글 목록 
-	@RequestMapping(value = "/reply/list.do")
-	public String list(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, Model model) throws Exception {
-		//내용저장  //유저 id 가져와서 ReplyVO에 저장하기
-		
-		System.out.println(rpVO.getRepContent()); 
-		if(!EgovStringUtil.isEmpty(rpVO.getRepContent())) {
-			replyService.insertReply(rpVO);
-		}
-		
-		rpVO.setRecordCountPerPage(Integer.MAX_VALUE);
-		rpVO.setFirstIndex(0); 
-		
-		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
-		rpVO.setRepWriter(user.getId());
-		
-		List<EgovMap> resultList = replyService.selectReplyList(rpVO);
-		model.addAttribute("resultList", resultList); 
-		
-		return "/reply/ReplyList";
-	}
 	
 	//댓글 삭제
 	@RequestMapping(value = "/reply/delete.do")
