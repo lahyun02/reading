@@ -84,7 +84,12 @@ public class ReplyController {
 	public String delete(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, Model model) throws Exception{
 		System.out.println(rpVO); 
 		System.out.println("replyNo: " + rpVO.getRepNo()); 
+		
+		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+		rpVO.setRepWriter(user.getId());
+		
 		replyService.deleteReply(rpVO);
+		
 		System.out.println("delete 댓글 삭제 후 실행 ");
 		return "/reply/ReplyList";
 	}

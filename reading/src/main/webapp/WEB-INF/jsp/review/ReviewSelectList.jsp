@@ -84,17 +84,6 @@
 										<img src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
 									</c:otherwise>				
 	                        	</c:choose>	
-	                        
-	                        	<%-- <c:if test="${not empty item.atchFileNm}">
-									<c:url var="thumbUrl" value="/cmm/fms/getThumbImage.do">
-										<c:param name="thumbYn" value="Y"/>
-										<c:param name="atchFileNm" value="${item.atchFileNm}" />
-									</c:url>                        	
-									<img src="${thumbUrl}" alt="썸네일" />
-	                        	</c:if>
-	                        	<c:if test="${empty item.atchFileNm}">
-	                        		<img src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
-	                        	</c:if> --%>
 	                        </div>
 	                        
 	                        <div class="b-wrap">
@@ -104,7 +93,7 @@
 	                            <input type="hidden" name="pageIndex" value="${rvVO.pageIndex}" />
 	                        </div>
 	                        <div class="b-content">
-	                        	<p><c:out value="${item.reviewCn}" /> </p>
+	                        	<p><c:out value="${item.reviewCn}" escapeXml="false"  /> </p>
 	                        </div>
 	                        <div class="b-txt">
 	                            <span><c:out value="${item.frstRegisterId}" /></span>

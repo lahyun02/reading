@@ -25,18 +25,22 @@
 				<td> 
 					${result.repNo} 
 					<form action="/reply/delete.do" method="post" id="delFrm">
-						<input type="hidden" id="repReviewId" name="repReviewId" value="${result.repReviewId}" />
-						<input type="hidden" id="repNo" name="repNo" value="${result.repNo}" />
-						<input type="hidden" id="repContent" name="repContent" value="${result.repContent}" />
+						<input type="hidden" class="repReviewId" name="repReviewId" value="${result.repReviewId}" />
+						<input type="hidden" class="repNo" name="repNo" value="${result.repNo}" />
+						<input type="hidden" class="repContent" name="repContent" value="${result.repContent}" />
 						<input type="button" class="btn-del" value="삭제" />  
 					</form>
+					<%-- <c:url var="delUrl" value="/reply/delete.do">
+						<c:param name="repReviewId" value="${result.repReviewId}" />
+						<c:param name="repNo" value="${result.repNo}" />
+					</c:url>
+					<td><a href="${delUrl}" class="btn-del">삭제</a></td> --%>
+					<button data-no="${result.repNo}" class="btn-del" >
+						삭제
+					</button>
 				</td>
 				
-				<%-- <c:url var="delUrl" value="/reply/delete.do">
-					<c:param name="repReviewId" value="${result.repReviewId}" />
-					<c:param name="repNo" value="${result.repNo}" />
-				</c:url>
-				<td><a href="${delUrl}" class="btn-del">삭제</a></td> --%>
+				
 			</tr>
 		</c:forEach>
 	</tbody>

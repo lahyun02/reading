@@ -81,9 +81,9 @@
 				</form>
 				
 				<div id="reply-box">
-					<c:import url="/reply/list.do" charEncoding="utf-8"> 
+					<%-- <c:import url="/reply/list.do" charEncoding="utf-8"> 
 						<c:param name="repReviewId" value="${result.reviewId}" />
-					</c:import>
+					</c:import> --%>
 				</div> 
 				
 			</div>
@@ -131,16 +131,29 @@ $(document).ready(function(){
 			$('#reply-box').empty();
 			console.log(data);
 			console.log("repContent : " + data.includes('name="repContent"') ); 
-			/* if(data[0].repContent) {
 			
-			for(var i = 0; i < data.length; i++) {
-				var vo = data[i];
-				console.log(vo.repReviewId, vo.repWriter, vo.repContent);
-			}  
-			}	*/
+			if(data[0].repContent) {
+				for(var i = 0; i < data.length; i++) {
+					var vo = data[i];
+					console.log(vo.repReviewId, vo.repWriter, vo.repContent);
+					/* $('<table>').appendTo('#reply-box');
+					$('<thead>').appendTo('#reply-box');
+					$('<tr>').appendTo('#reply-box');
+					$('<th>').text('작성자').appendTo('#reply-box');
+					$('<th>').text('내용').appendTo('#reply-box');
+					$('<th>').text('작성일').appendTo('#reply-box');
+					$('<th>').text('관리').appendTo('#reply-box');
+					$('<tbody>').appendTo('#reply-box'); */
+				}  
+			}
+			
 			if(data.includes('name="repContent"')) {
 				$('#reply-box').html(data);
-			} 
+			}  
+			
+			/* if(data.repWriter === '${data.memId}' ) {  
+				  $('<button>').attr('data-no', vo.repNo).addClass('delBtn');    //<button>삭제</button>
+			 } */
 		}).fail(function( jqXHR, textStatus ) {  //요청이 실패한 경우 실행할 함수 
 			alert( "Request failed: " + textStatus );
 		});	
@@ -161,7 +174,7 @@ $(document).ready(function(){
 			  , repWriter : $('#repWriter').val()
 			  , repContent : $('#repContent').val()  
 		  },
-		  dataType: "json",
+		  dataType: "html",
 		  
 		}).done(function(msg) {
 			
@@ -173,6 +186,28 @@ $(document).ready(function(){
 			alert( "Request failed: " + textStatus );
 		});	
 	});	
+	
+	$('#reply-box').on('click', '.btn-del', function(){
+		alert("댓글이 삭제되었습니다.");
+		$.ajax({
+			url: "/reply/delete.do",
+			method: "GET",
+			data: { 
+				repNo : $(this).attr('data-no')
+			},
+			dataType: "html"
+			  
+		}).done(function( data ) {
+			console.log(data);
+			console.log("data.repNo :" + $('#repNo').val() );
+			refreshReplyList();
+			
+		}).fail(function( jqXHR, textStatus ) {  //요청이 실패한 경우 실행할 함수 
+			alert( "Request failed: " + textStatus );
+		});	
+		
+		
+	});
 		
 
 	/*
