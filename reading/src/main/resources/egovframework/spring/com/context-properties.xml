@@ -14,6 +14,7 @@
 	        	
 	        	<!-- 첨부파일이 저장되는 경로 -->
 	        	<entry key="review.fileStorePath" value="${Globals.File}/upload/review/"/>
+	        	<entry key="sentc.fileStorePath" value="${Globals.File}/upload/sentc/"/>
 	        	
 	        	<!-- 썸네일 기본 크기(가로 세로) -->
 	        	<entry key="photoThumbWidth" value="350" />

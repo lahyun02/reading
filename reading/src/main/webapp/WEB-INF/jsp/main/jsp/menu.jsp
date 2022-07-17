@@ -29,9 +29,9 @@
     <nav id="nav">
     	<ul class="gnb">
         	<li><a href="/review/selectList.do">책리뷰</a></li>
-        	<li><a href="#">자유글</a></li>
-        	<li><a href="#">책문구</a></li>
-        	<li><a href="#">책추천</a></li>
+        	<li><a href="/sentc/selectList.do">책문구</a></li>
+        	<%-- <li><a href="#">자유글</a></li> --%>
+        	<%-- <li><a href="#">책추천</a></li> --%>
      	</ul>
      </nav>
      <!-- 로그인/회원가입 -->

@@ -16,7 +16,7 @@ public interface ReplyMapper {
 //	List<EgovMap> selectReplyList(ReplyVO rpVO) throws Exception;
 	
 	//댓글 삭제
-	void deleteReply(ReplyVO rpVO) throws Exception;
+	int deleteReply(ReplyVO rpVO) throws Exception;
 	
 	//댓글 목록 
 	List<EgovMap> selectReplyList(ReplyVO rpVO) throws Exception;

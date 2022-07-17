@@ -8,6 +8,7 @@
 		<result property="repWriter" column="REP_WRITER"/>
 		<result property="repRegDate" column="REP_REG_DATE"/>
 		<result property="repReviewId" column="REP_REVIEW_ID"/>
+		<result property="repSentcId" column="REP_SENTC_ID"/>
 		<result property="useAt" column="USE_AT"/>
 	</resultMap>
 	
@@ -19,9 +20,24 @@
 			, REP_REG_DATE
 			, REP_REVIEW_ID
 		FROM REPLY
-		WHERE REP_REVIEW_ID = #{repReviewId}
-			AND USE_AT = 'Y'
+		<include refid="selectReplyListWhere"></include> 
+		ORDER BY REP_REG_DATE DESC
 	</select>
+	
+	<sql id="selectReplyListWhere">
+		<where>
+			USE_AT = 'Y'
+			<choose>
+				<when test='repReviewId != null and repReviewId != ""'>
+					AND REP_REVIEW_ID = #{repReviewId}
+						
+				</when>
+				<when test='repSentcId != null and repSentcId != ""'>
+					AND REP_SENTC_ID = #{repSentcId}
+				</when>
+			</choose>
+		</where>
+	</sql>
 	
 	
 	<insert id="insertReply">
@@ -32,6 +48,7 @@
 			, REP_REG_DATE
 			, REP_REVIEW_ID
 			, USE_AT
+			, REP_SENTC_ID
 		) VALUES (
 			  #{repNo}
 			, #{repContent}
@@ -39,6 +56,7 @@
 			, NOW()
 			, #{repReviewId}
 			, 'Y'
+			, #{repSentcId}
 		)
 	</insert>
 	

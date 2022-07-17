@@ -23,6 +23,10 @@ body {
 
 
 /* --------섹션1 메인 -------- */
+#container {
+	padding-bottom:150px;
+}
+
 .main-bg {
     width: 100%;
     height: 100%;
@@ -117,11 +121,12 @@ body {
     justify-content: space-between;
 }
 #qt-section .quotes-box .quotes {
-    background: #fff;
+    width: 30%;
     margin: 0 20px;
     padding: 30px;
     box-sizing: border-box;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    background: #fff;
     text-align: center;
     transition: 0.3s;
 }
@@ -135,6 +140,17 @@ body {
     margin-top: 18px;
     text-align: left;
     font-size: 14px;
+}
+#qt-section .quotes-box .quotes p:nth-child(1) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#qt-section .quotes-box .quotes_cont {
+	text-overflow: ellipsis;
+    white-space: -webkit-nowrap;
+    overflow: hidden;
+    height: 60px;
 }
 #qt-section .quotes-box .quotes span a {
     display: inline-block;

@@ -10,6 +10,8 @@ import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
 import egovframework.let.review.service.ReviewService;
 import egovframework.let.review.service.ReviewVO;
+import egovframework.let.sentc.service.SentcService;
+import egovframework.let.sentc.service.SentcVO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -45,7 +47,11 @@ public class EgovMainController {
 	//책공간 추가 
 	@Resource(name = "reviewService")
 	private ReviewService reviewService;
-
+	
+	//책문구 추가
+	@Resource(name = "sentcService")
+	private SentcService sentcService;
+	
 	/**
 	 * EgovBBSManageService
 	 */
@@ -106,12 +112,18 @@ public class EgovMainController {
 	}
 	
 	@RequestMapping(value = "/index.do")
-	public String index(@ModelAttribute("rv") ReviewVO rvVO, HttpServletRequest request, ModelMap model) throws Exception {
+	public String index(@ModelAttribute("rv") ReviewVO rvVO, SentcVO stVO, HttpServletRequest request, ModelMap model) throws Exception {
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		model.addAttribute("USER_INFO", user);
 		
+		stVO.setMainAt("Y"); 
+		
 		List<EgovMap> resultList = reviewService.selectMainReview(rvVO);
 		model.addAttribute("resultList", resultList); 
+		
+		List<EgovMap> sentcList = sentcService.selectSentcList(stVO);
+		model.addAttribute("sentcList", sentcList); 
+		
 		
 		return "main/Index";
 	}

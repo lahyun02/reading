@@ -4,12 +4,12 @@
 /***********************************************************
 * bbs_warp : web 
 ************************************************************/
-#bbs_wrap { width:100%; }
-div ~ #bbs_wrap { margin-top:30px; }
+#bbs_wrap { width:100%; max-width:1200px; margin: 0 auto; }
+div ~ #bbs_wrap { margin-top:30px; max-width: 1200px; margin: 30px auto; }
 #bbs_wrap .total { margin-bottom: 10px;text-align:left;padding-left:15px;background: url("./images/icon_balloon.gif") no-repeat scroll left center transparent; width:auto;float:none;clear:both; }
 #bbs_wrap input + .total { margin-top:0; }
 #bbs_wrap .bbs_list { width:100%; }
-#bbs_search { line-height: 37px;  margin-bottom: 30px; background:#f6f6f6;text-align:center;padding:6px 0;border-top:1px solid #ddd; border-bottom:1px solid #ddd;}
+#bbs_search { line-height: 37px; max-width: 1200px;  margin-bottom: 30px; margin: 30px auto; background:#f6f6f6;text-align:center;padding:6px 0;border-top:1px solid #ddd; border-bottom:1px solid #ddd;}
 #paging + #bbs_search { text-align:center;background: none repeat scroll 0 0 #F6F6F6; border: 1px solid #E9E9E9;padding:5px 0;line-height: 37px;  margin-bottom: 30px; }
 #bbs_search .inp_s { border: 1px solid #DDDDDD; height: 40px; width:200px;vertical-align: middle; margin-right:3px; }
 
@@ -292,8 +292,8 @@ table + .btn_r { margin-top:20px; }
 .bbtn_s button { 
 	display:inline-block;
 	box-sizing:border-box;
-	background:#343a40;
-	border:1px solid #343a40; 
+	background:#6bb5d6;
+	border:1px solid #6bb5d6; 
 	height:40px;
 	line-height:38px;
 	color:#fff;
@@ -619,4 +619,23 @@ table + .btn_r { margin-top:20px; }
     #bbs_wrap .info_view2 dd {
         width:75%;
     }*/
+}
+
+
+/* */
+#rvList-section {
+	padding-top: 0;
+}
+
+#contents { padding-top : 0px; }
+.list-title {
+    padding-top: 180px;
+    padding-bottom: 100px;
+    margin-bottom: 70px;
+    background: url(../images/main/bg_01.jpg);
+}
+.list-title h2 {
+    text-align: center;
+    font-size: 36px;
+    color: #fff;
 }

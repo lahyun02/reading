@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.let.sentc.service.impl.SentcMapper">
+	
+	<resultMap id="sentc" type="egovframework.let.sentc.service.SentcVO">
+		<result property="sentcId" column="SENTC_ID"/>
+		<result property="sentcSj" column="SENTC_SJ"/>
+		<result property="sentcCn" column="SENTC_CN"/>
+		<result property="inqireCo" column="INQIRE_CO"/>
+		<result property="creatIp" column="CREAT_IP"/>
+		<result property="noticeAt" column="NOTICE_AT"/>
+		<result property="othbcAt" column="OTHBC_AT"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="frstRegistPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+		<result property="mainAt" column="MAIN_AT"/>
+	</resultMap>
+
+	<select id="selectSentcList" resultType="egovMap">
+		SELECT
+			A.SENTC_ID
+			, A.SENTC_SJ
+			, A.SENTC_CN
+			, A.INQIRE_CO
+			, A.CREAT_IP
+			, A.NOTICE_AT
+			, A.OTHBC_AT
+			, A.USE_AT
+			, A.ATCH_FILE_ID
+			, A.FRST_REGIST_PNTTM
+			, A.FRST_REGISTER_ID
+			, (SELECT
+					CONCAT(X.STRE_FILE_NM, '.', X.FILE_EXTSN)
+				FROM LETTNFILEDETAIL X
+				WHERE X.ATCH_FILE_ID = A.ATCH_FILE_ID
+					AND UPPER(FILE_EXTSN) IN ('GIF', 'JPG', 'JPEG', 'BMP', 'PNG')
+				ORDER BY FILE_SN
+				LIMIT 1
+			) AS ATCH_FILE_NM
+		FROM SENTC A
+		<include refid="selectSentcListWhere"></include>
+		ORDER BY A.FRST_REGIST_PNTTM DESC
+		<choose>
+			<when test='mainAt != "N"'>
+				LIMIT 3 OFFSET 0
+			</when>
+			<when test='noticeAt != "Y"'>
+				LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+			</when>
+		</choose>
+	</select>
+	
+	<select id="selectSentcListCnt" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*) CNT
+		FROM SENTC A
+		<include refid="selectSentcListWhere"></include>
+	</select>
+	
+	<sql id="selectSentcListWhere">
+		<where>
+			A.USE_AT = 'Y'
+			<choose>
+				<when test='noticeAt == "Y"'>
+					AND A.NOTICE_AT = 'Y'
+				</when>
+				<otherwise>
+					<if test='searchCondition != null and searchCondition != ""'>
+						<choose>
+							<when test='searchCondition == "0"'>
+								AND A.SENTC_SJ LIKE CONCAT('%', #{searchKeyword}, '%')
+							</when>
+							<when test='searchCondition == "1"'>
+								AND A.SENTC_CN LIKE CONCAT('%', #{searchKeyword}, '%')
+							</when>
+							<when test='searchCondition == "2"'>
+								AND A.FRST_REGISTER_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+							</when>
+						</choose>
+					</if>
+				</otherwise>
+			</choose>
+		</where>
+	</sql>
+	
+	<insert id="insertSentc" parameterType="egovframework.let.sentc.service.SentcVO"> 
+		INSERT INTO SENTC (
+			SENTC_ID
+			, SENTC_SJ
+			, SENTC_CN
+			, INQIRE_CO
+			, CREAT_IP
+			, NOTICE_AT
+			, OTHBC_AT
+			, USE_AT
+			, ATCH_FILE_ID
+			, FRST_REGIST_PNTTM
+			, FRST_REGISTER_ID
+			, LAST_UPDT_PNTTM
+			, LAST_UPDUSR_ID
+			, MAIN_AT
+		) VALUES (
+			#{sentcId}
+			, #{sentcSj}
+			, #{sentcCn}
+			, 0
+			, #{creatIp}
+			, #{noticeAt}
+			, #{othbcAt}
+			, 'Y'
+			, #{atchFileId}
+			, NOW()
+			, #{userId}
+			, NOW()
+			, #{userId}
+			, 'N'
+		) 
+		
+	<!-- 초기값 세팅: 처음에 값이 들어갈때 db에 초기값을 줄지, param 변수로 받아오는지 생각 -->
+	</insert>
+	
+	<select id="selectSentc" resultMap="sentc">
+		SELECT
+			SENTC_ID
+			, SENTC_SJ
+			, SENTC_CN
+			, INQIRE_CO
+			, CREAT_IP
+			, NOTICE_AT
+			, OTHBC_AT
+			, USE_AT
+			, ATCH_FILE_ID
+			, FRST_REGIST_PNTTM
+			, FRST_REGISTER_ID
+		FROM SENTC
+		WHERE SENTC_ID = #{sentcId}
+			AND USE_AT = 'Y'
+	</select>
+	
+	<update id="updateViewCnt" parameterType="egovframework.let.sentc.service.SentcVO">
+		UPDATE SENTC SET
+			INQIRE_CO = INQIRE_CO + 1
+		WHERE SENTC_ID = #{sentcId}
+	</update>
+	
+	<update id="updateSentc" parameterType="egovframework.let.sentc.service.SentcVO">
+		UPDATE SENTC SET
+			SENTC_SJ = #{sentcSj}
+			, SENTC_CN = #{sentcCn}
+			, NOTICE_AT = #{noticeAt}
+			, OTHBC_AT = #{othbcAt}
+			<if test='atchFileId != null and atchFileId != ""'>
+				, ATCH_FILE_ID = #{atchFileId}
+			</if>
+			, LAST_UPDT_PNTTM = NOW()
+			, LAST_UPDUSR_ID = #{userId}
+		WHERE SENTC_ID = #{sentcId}
+		<if test='mngAt != "Y"'>
+			AND FRST_REGISTER_ID = #{userId}
+		</if>
+	</update>
+	
+	<update id="deleteSentc" parameterType="egovframework.let.sentc.service.SentcVO">
+		UPDATE SENTC SET
+			USE_AT = 'N'
+		WHERE SENTC_ID = #{sentcId}
+		<if test='mngAt != "Y"'>
+			AND FRST_REGISTER_ID = #{userId}
+		</if>
+	</update>
+	
+	
+
+</mapper>

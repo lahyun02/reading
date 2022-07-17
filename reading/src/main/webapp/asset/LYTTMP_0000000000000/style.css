@@ -824,7 +824,7 @@ i[class^=ico-book] {
 .btn-cont:first-child,
 input[type=hidden] + .btn-cont { margin-top:0; }
 .btn-cont.al { text-align:left; padding:0;}
-.btn-cont.ar { text-align:right; padding:0;}
+.btn-cont.ar { text-align:right; padding:0; max-width: 1200px; margin: 30px auto; }
 .btn_all {overflow:hidden;width:100%;}
 .btn_c {text-align:center;margin:15px 0;overflow:hidden;}
 .btn_l {text-align:left;margin:15px 0;}
@@ -2047,13 +2047,15 @@ input.datepicker + span {
 /* layout */
 .container {
 	box-sizing:border-box;
-	max-width:1200px;
+	/* max-width:1200px; */
 	margin:0 auto;
 	position:relative;
 	overflow:hidden;
 }
 #contents{
-	padding-top:100px;
+	/*padding-top:130px;*/
+	padding-top:0px;
+	padding-bottom:150px;
 }
 .sub_wrap{margin:0 auto;padding:0;}
 .sub_wrap .container #contents {
@@ -3076,8 +3078,10 @@ table.chart1 td.alL{text-align:left;}
 .star{color:red;margin-right:5px;}
 table.chart2 {
 	border-top:2px solid #545f80;
-	margin-bottom:10px;
 	text-align:left;
+	max-width: 1200px;
+    margin: 0px auto;
+	margin-bottom:10px;
 }
 table.chart2 thead th {
 	padding:10px;
@@ -3250,7 +3254,7 @@ table.result_chart2 tbody td.bg{background:#edf3fa;}
 #paging .prev { position:relative; background:url("images/common/btn_prev.svg") center no-repeat; border-color:#dee2e6; margin-right:30px;}
 #paging .next { position:relative; background:url("images/common/btn_next.svg") center no-repeat; border-color:#dee2e6; margin-left:30px;}
 #paging .last { position:relative; background:url("images/common/btn_last.svg") center no-repeat; border-color:#dee2e6;}
-#paging .current { display:inline-block;background:#343a40;border:none;color:#fff;width:31px;height:31px;line-height:31px;vertical-align:middle;border-radius:1px;border-radius:2px;}
+#paging .current { display:inline-block;background:#6bb5d6;border:none;color:#fff;width:31px;height:31px;line-height:31px;vertical-align:middle;border-radius:1px;border-radius:2px;}
 #bbs_wrap #paging { float:none; }
 
 #pop_research{background:#fff;position:absolute;top:150px;left:180px;z-index:100;width:660px;}
@@ -8010,3 +8014,5 @@ li .img_order { padding-left:0;margin-top:10px; }
 	.bg-box #startDate,
 	.bg-box #endDate { width:95px;background-image:none; }
 }
+
+

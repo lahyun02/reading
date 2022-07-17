@@ -28,8 +28,19 @@ public class ReplyVO extends ComDefaultVO {
 	//사용여부
 	private String useAt;
 	
+	//댓글문구글번호
+	private String repSentcId;
 	
 	
+	
+	public String getRepSentcId() {
+		return repSentcId;
+	}
+
+	public void setRepSentcId(String repSentcId) {
+		this.repSentcId = repSentcId;
+	}
+
 	public String getUseAt() {
 		return useAt;
 	}

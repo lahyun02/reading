@@ -24,6 +24,10 @@ em {
 
 
 /* ----------섹션---------- */
+#container {
+	padding-bottom:150px;
+}
+
 #rvList-section {
     width: 100%;
     min-height: 768px;
@@ -102,6 +106,8 @@ em {
 #rvList-section .rvList-wrap .b-content {
 	padding-top: 10px;
 	width: 300px;
+	height: 24px;
+	overflow: hidden;
 }
 #rvList-section .rvList-wrap .b-content p {
 	

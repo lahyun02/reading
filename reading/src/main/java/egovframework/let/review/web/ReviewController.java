@@ -37,6 +37,7 @@ public class ReviewController {
 	@Resource(name = "fileMngUtil")
 	private FileMngUtil fileUtil;
 	
+	
 	//Review 목록 가져오기
 	@RequestMapping(value = "/review/selectList.do")
 	public String selectList(@ModelAttribute("rv") ReviewVO rvVO,HttpServletRequest request, ModelMap model) throws Exception {

@@ -19,11 +19,16 @@
 <link href="/asset/LYTTMP_0000000000000/style.css" rel="stylesheet" />
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
 </head>
 <body>
 <%@include file="/WEB-INF/jsp/main/jsp/menu.jsp"%>
 <div class="container">
 	<div id="contents">
+		<div class="list-title">
+            <h2>책리뷰</h2>
+        </div>
 		<div id="bbs_wrap"> 
 			<div class="board_view">
 				<dl class="tit_view">
@@ -73,12 +78,30 @@
 					<c:out value="${result.reviewCn}" escapeXml="false" />
 				</div>
 				
+				<div class= "btn-box" style="float: right; margin: 30px 0;">
+					<c:url var="uptUrl" value="/review/reviewRegist.do">
+						<c:param name="reviewId" value="${result.reviewId}" />
+					</c:url>
+					<a href="${uptUrl}" class="btn">수정</a>
+					
+					<c:url var="delUrl" value="/review/delete.do">
+						<c:param name="reviewId" value="${result.reviewId}" />
+						<c:param name="frstRegisterId" value="${result.frstRegisterId}" />
+					</c:url>
+					<a href="${delUrl}" id="btn-del" class="btn"><i class="ico-del"></i> 삭제</a>
+					
+					<c:url var="listUrl" value="/review/selectList.do" /> 
+					<a href="${listUrl}" class="btn">목록</a>	
+				</div>
+				
 				<form action="/reply/list.do" method="post">
 					<input type="hidden" id="repReviewId" name="repReviewId" value="${result.reviewId}" />
 					<input type="hidden" id="repWriter" name="repWriter" value="${USER_INFO.id}" />
 					<textarea id="repContent" name="repContent" rows="10" cols="80"></textarea>
 					<input type="button" id="saveBtn" value="저장" />  
 				</form>
+				
+				
 				
 				<div id="reply-box">
 					<%-- <c:import url="/reply/list.do" charEncoding="utf-8"> 
@@ -91,19 +114,7 @@
 		</div>
 	</div>
 	
-	<c:url var="uptUrl" value="/review/reviewRegist.do">
-		<c:param name="reviewId" value="${result.reviewId}" />
-	</c:url>
-	<a href="${uptUrl}" class="btn">수정</a>
 	
-	<c:url var="delUrl" value="/review/delete.do">
-		<c:param name="reviewId" value="${result.reviewId}" />
-		<c:param name="frstRegisterId" value="${result.frstRegisterId}" />
-	</c:url>
-	<a href="${delUrl}" id="btn-del" class="btn"><i class="ico-del"></i> 삭제</a>
-	
-	<c:url var="listUrl" value="/review/selectList.do" /> 
-	<a href="${listUrl}" class="btn">목록</a>	
 	
 </div>
 
@@ -125,7 +136,7 @@ $(document).ready(function(){
 			data: { 
 				repReviewId : $('#repReviewId').val(),
 			},
-			dataType: "html"
+			dataType: "json"
 			  
 		}).done(function( data ) {
 			$('#reply-box').empty();
@@ -133,23 +144,29 @@ $(document).ready(function(){
 			console.log("repContent : " + data.includes('name="repContent"') ); 
 			
 			if(data[0].repContent) {
+				/* $('<div>').text('작성자').appendTo('#reply-box');
+				$('<div>').text('내용').appendTo('#reply-box');
+				$('<div>').text('작성일').appendTo('#reply-box');
+				$('<div>').text('관리').appendTo('#reply-box'); */
 				for(var i = 0; i < data.length; i++) {
 					var vo = data[i];
 					console.log(vo.repReviewId, vo.repWriter, vo.repContent);
-					/* $('<table>').appendTo('#reply-box');
-					$('<thead>').appendTo('#reply-box');
-					$('<tr>').appendTo('#reply-box');
-					$('<th>').text('작성자').appendTo('#reply-box');
-					$('<th>').text('내용').appendTo('#reply-box');
-					$('<th>').text('작성일').appendTo('#reply-box');
-					$('<th>').text('관리').appendTo('#reply-box');
-					$('<tbody>').appendTo('#reply-box'); */
+					$('<div>').text( vo.repWriter ).appendTo('#reply-box');
+					$('<div>').text( vo.repContent ).appendTo('#reply-box');
+					$('<div>').text( moment( vo.repRegDate ).format("YYYY-MM-DD HH:mm:ss") ).appendTo('#reply-box');
+					console.log(vo.repWriter);
+					console.log('${USER_INFO.id}');
+					if(vo.repWriter == '${USER_INFO.id}') {
+						$('<button>').attr('data-no', vo.repNo).addClass('btn-del').text('삭제').appendTo( '#reply-box' ); 
+					}
+					
+					$('<hr>').appendTo('#reply-box'); 
 				}  
 			}
 			
-			if(data.includes('name="repContent"')) {
+			/* if(data.includes('name="repContent"')) {
 				$('#reply-box').html(data);
-			}  
+			}  */ 
 			
 			/* if(data.repWriter === '${data.memId}' ) {  
 				  $('<button>').attr('data-no', vo.repNo).addClass('delBtn');    //<button>삭제</button>
@@ -174,7 +191,7 @@ $(document).ready(function(){
 			  , repWriter : $('#repWriter').val()
 			  , repContent : $('#repContent').val()  
 		  },
-		  dataType: "html",
+		  dataType: "json",
 		  
 		}).done(function(msg) {
 			
@@ -191,11 +208,11 @@ $(document).ready(function(){
 		alert("댓글이 삭제되었습니다.");
 		$.ajax({
 			url: "/reply/delete.do",
-			method: "GET",
+			method: "GET", 
 			data: { 
 				repNo : $(this).attr('data-no')
 			},
-			dataType: "html"
+			dataType: "json"
 			  
 		}).done(function( data ) {
 			console.log(data);

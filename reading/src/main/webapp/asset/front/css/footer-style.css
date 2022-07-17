@@ -23,6 +23,10 @@ body {
 
 /* -------- 푸터 -------- */
 #footer {
+    width: 100%;
+	position: fixed;
+    left: 0;
+    bottom: 0;
     background: #6bb5d6;
 }
 #footer .footer-wrap {

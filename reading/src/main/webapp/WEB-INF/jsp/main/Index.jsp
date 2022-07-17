@@ -60,46 +60,11 @@
 	                            	<c:url var="selectUrl" value="/review/select.do">
 										<c:param name="reviewId" value="${result.reviewId}"></c:param>
 									</c:url>
-	                            	<a href="${selectUrl}">${status.count}==바로가기</a>
+	                            	<a href="${selectUrl}">바로가기</a>
 	                            </span>
 	                        </div>
                     	</div>
 					</c:forEach>
-                    
-                    
-                    <%-- <div class="swiper-slide s-img1">
-                        <div class="s-bg">
-                            <span class="s-btn"><a href="#">바로가기</a></span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide s-img2">
-                        <div class="s-bg">
-                            <span class="s-btn"><a href="#">바로가기</a></span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide s-img3">
-                        <div class="s-bg">
-                            <span class="s-btn"><a href="#">바로가기</a></span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide s-img4">
-                        <div class="s-bg">
-                            <span class="s-btn"><a href="#">바로가기</a></span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide s-img5">
-                        <div class="s-bg">
-                            <span class="s-btn"><a href="#">바로가기</a></span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide s-img6">
-                        <div class="s-bg">
-                            <span class="s-btn"><a href="#">바로가기</a></span>
-                        </div>
-                    </div> --%>
-                    
-                    
-                    
                     
                     </div>
                     <div class="swiper-pagination"></div>
@@ -112,7 +77,22 @@
                 <strong>기록하고 싶은 책 문구</strong>
             </div>
             <div class="quotes-box">
-                <div class="quotes">
+            	<c:forEach var="result" items="${sentcList}">
+            		<div class="quotes">
+	                    <strong>${result.sentcSj}</strong>
+	                    <div class="quotes_cont"> 
+	                        <c:out value="${result.sentcCn}" escapeXml="false"  />
+	                    </div>
+	                    <span>
+	                    	<c:url var="selectUrl" value="/sentc/select.do">
+								<c:param name="sentcId" value="${result.sentcId}"></c:param>
+							</c:url>
+	                    	<a href="${selectUrl}">바로가기</a>
+	                    </span>
+                	</div>
+            	</c:forEach>
+            	
+                <%--  <div class="quotes">
                     <strong>불편한 편의점</strong>
                     <p>
                         불편한 편의점에서 기록하고 싶은 인용구를 적는
@@ -135,7 +115,7 @@
                         공간입니다. 불편한 편의점에서 기록하고 싶은 인용구를 적는 공간입니다.
                     </p>
                     <span><a href="#">바로가기</a></span>
-                </div>
+                </div> --%>
             </div>
         </section>
         

@@ -39,8 +39,8 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	//댓글 삭제
 	@Override
-	public void deleteReply(ReplyVO rpVO) throws Exception {
-		replyMapper.deleteReply(rpVO);
+	public int deleteReply(ReplyVO rpVO) throws Exception {
+		return replyMapper.deleteReply(rpVO);
 	}
 	
 	//댓글 목록 

@@ -30,15 +30,17 @@ public class ReplyController {
 	
 	//댓글 조회
 	@RequestMapping(value = "/reply/list.do")
-	//@ResponseBody
-	public String selectReplyList(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, ModelMap model) throws Exception {
+	@ResponseBody
+	public List<EgovMap> selectReplyList(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, ModelMap model) throws Exception {
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		rpVO.setRepWriter(user.getId());
-
+		
+		System.out.println("댓글 DB조회 전 ");
 		List<EgovMap> resultList = replyService.selectReplyList(rpVO);
+		System.out.println("댓글 DB조회 후 ");
 		System.out.println(resultList); 
 		model.addAttribute("resultList", resultList); 
-		return "reply/ReplyList"; 
+		return resultList; 
 	}
 	
 	
@@ -81,17 +83,21 @@ public class ReplyController {
 	
 	//댓글 삭제
 	@RequestMapping(value = "/reply/delete.do")
-	public String delete(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, Model model) throws Exception{
+	@ResponseBody
+	public Map<String, Object> delete(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, Model model) throws Exception{
 		System.out.println(rpVO); 
 		System.out.println("replyNo: " + rpVO.getRepNo()); 
 		
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		rpVO.setRepWriter(user.getId());
 		
-		replyService.deleteReply(rpVO);
+		int num = replyService.deleteReply(rpVO);
 		
+		Map<String,Object> map = new HashMap<String, Object>();
+ 		map.put("no", num); //map에 num값을 담기
+
 		System.out.println("delete 댓글 삭제 후 실행 ");
-		return "/reply/ReplyList";
+		return map;
 	}
 	
 	
