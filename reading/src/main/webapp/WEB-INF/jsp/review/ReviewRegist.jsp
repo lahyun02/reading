@@ -213,7 +213,7 @@ $(function(){
 	$(document).ready(function() {
 		//게시글 등록
 		$("#btn-rgt").click(function(){
-			alert(00);
+			//alert(00);
 			$("#frm").submit();
 			return false;
 		});
