@@ -121,9 +121,9 @@ $(function(){
         </div>
 	<form action="${actionUrl}" method="post" id="frm" name="frm" onsubmit="return regist()" enctype="multipart/form-data"> 
 		<input type="hidden" name="reviewId" value="${rv.reviewId }" />
-		<input type="hidden" name="returnUrl" value="/board/boardRegist.do" />
+		<input type="hidden" name="returnUrl" value="/review/reviewRegist.do" />
 		<table class="chart2">
-			<caption></caption>
+			<caption>게시글 작성</caption>
 			<colgroup>
 				<col style="width:120px" />
 				<col />

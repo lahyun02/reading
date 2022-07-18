@@ -62,7 +62,7 @@
 			        <span><c:out value="${fileVO.orignlFileNm}"/></span>
 			        <span><c:out value="${fileVO.fileMg}"/> byte</span>
 			        <span class="del">
-			        	<a href="">
+			        	<a href="#" class="file-del" data-id="${fileVO.atchFileId}" data-sn="${fileVO.fileSn}">
 					       <img src="/asset/BBSTMP_0000000000001/images/btn_sdelete.gif" alt="첨부된 파일 삭제" />
 			        	</a>
 			        </span>

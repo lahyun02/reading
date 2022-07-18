@@ -97,7 +97,7 @@
 				<form action="/reply/list.do" method="post">
 					<input type="hidden" id="repReviewId" name="repReviewId" value="${result.reviewId}" />
 					<input type="hidden" id="repWriter" name="repWriter" value="${USER_INFO.id}" />
-					<textarea id="repContent" name="repContent" rows="10" cols="80"></textarea>
+					<textarea id="repContent" name="repContent" rows="4" cols="80"></textarea>
 					<input type="button" id="saveBtn" value="저장" />  
 				</form>
 				

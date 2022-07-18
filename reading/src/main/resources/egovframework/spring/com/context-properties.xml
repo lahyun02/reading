@@ -21,8 +21,8 @@
 	        	<entry key="photoThumbHeight" value="250" />
 	        	
 	        	<!-- 상세조회 첨부파일 사진 보이기 -->
-	        	<entry key="photoSelectWidth" value="800" />
-	        	<entry key="photoSelectHeight" value="800" />
+	        	<entry key="photoSelectWidth" value="500" />
+	        	<entry key="photoSelectHeight" value="500" />
 	        </map>
 		</property>
 	</bean>

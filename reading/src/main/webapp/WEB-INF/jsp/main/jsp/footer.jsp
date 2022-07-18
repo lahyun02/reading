@@ -23,10 +23,10 @@
                         <a href="/index.do"><img src='<c:out value="/asset/images/comm/footer_logo.png"/>' alt="logo"/></a>
                     </div>
                     <ul class="footer-menu">
-                        <li><a href="#">책리뷰</a></li>
-                        <li><a href="#">자유글</a></li>
-                        <li><a href="#">책문구</a></li>
-                        <li><a href="#">책추천</a></li>
+                        <li><a href="/review/selectList.do">책리뷰</a></li>
+                        <li><a href="/sentc/selectList.do">책문구</a></li>
+                        <!-- <li><a href="#">자유글</a></li>
+                        <li><a href="#">책추천</a></li> -->
                     </ul>
                 </div>
                 <div class="footer-contents">

@@ -67,10 +67,10 @@
                 <div class="rvList-wrap">
                 	<c:forEach var="item" items="${rvList}" varStatus="status" >
 	                    <div class="box">
-	                    	<div class="num">
+	                    	<%-- <div class="num">
 	                    		<c:out value="${paginationInfo.totalRecordCount - ((paginationInfo.currentPageNo-1) * paginationInfo.recordCountPerPage) - (status.count - 1)}" />
 	                    		| ${paginationInfo.recordCountPerPage} + ${rvVO.pageUnit} + ${rvVO.pageIndex}
-	                    	</div>
+	                    	</div> --%>
 	                        <div class="b-img">
 	                        	<c:choose>
 									<c:when test="${not empty item.atchFileNm}">
@@ -81,7 +81,7 @@
 										<img src="${thumbUrl}" alt=""/>
 									</c:when>
 									<c:otherwise>
-										<img src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
+										<img class="defaultImg" src='<c:url value="/asset/images/reviewList_default_img.jpg"/>' alt="기본썸네일" /> 
 									</c:otherwise>				
 	                        	</c:choose>	
 	                        </div>
