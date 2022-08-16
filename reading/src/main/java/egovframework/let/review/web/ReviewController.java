@@ -41,8 +41,9 @@ public class ReviewController {
 	//Review 목록 가져오기
 	@RequestMapping(value = "/review/selectList.do")
 	public String selectList(@ModelAttribute("rv") ReviewVO rvVO,HttpServletRequest request, ModelMap model) throws Exception {
-//		model.addAttribute("rv", rvVO); 
-		System.out.println("rvVO의 pageIndex: " + rvVO.getPageIndex());
+		
+		rvVO.setMainAt("N");
+		
 		PaginationInfo paginationInfo = new PaginationInfo();
 		
 		paginationInfo.setCurrentPageNo(rvVO.getPageIndex());

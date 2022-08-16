@@ -116,9 +116,10 @@ public class EgovMainController {
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		model.addAttribute("USER_INFO", user);
 		
+		rvVO.setMainAt("Y");
 		stVO.setMainAt("Y"); 
 		
-		List<EgovMap> resultList = reviewService.selectMainReview(rvVO);
+		List<EgovMap> resultList = reviewService.selectReviewList(rvVO);
 		model.addAttribute("resultList", resultList); 
 		
 		List<EgovMap> sentcList = sentcService.selectSentcList(stVO);

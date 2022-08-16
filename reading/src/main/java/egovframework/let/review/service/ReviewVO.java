@@ -49,7 +49,18 @@ public class ReviewVO extends ComDefaultVO implements Serializable {
 	//관리자여부
 	private String mngAt;
 	
+	//메인여부 
+	private String mainAt;
 	
+	
+	public String getMainAt() {
+		return mainAt;
+	}
+
+	public void setMainAt(String mainAt) {
+		this.mainAt = mainAt;
+	}
+
 	/** recordCountPerPage */
     private int recordCountPerPage = 9;
 	

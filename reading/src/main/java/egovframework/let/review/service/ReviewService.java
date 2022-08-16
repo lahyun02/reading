@@ -24,11 +24,5 @@ public interface ReviewService {
 	//Review 목록 수 
 	public int selectReviewListCnt(ReviewVO rvVO) throws Exception;
 	
-	//Main Review 조회순 
-	public List<EgovMap> selectMainReview(ReviewVO rvVO) throws Exception; 
-	
-	
-	
-	
 
 }
