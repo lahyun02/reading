@@ -92,30 +92,6 @@
                 	</div>
             	</c:forEach>
             	
-                <%--  <div class="quotes">
-                    <strong>불편한 편의점</strong>
-                    <p>
-                        불편한 편의점에서 기록하고 싶은 인용구를 적는
-                        공간입니다. 불편한 편의점에서 기록하고 싶은 인용구를 적는 공간입니다.
-                    </p>
-                    <span><a href="#">바로가기</a></span>
-                </div>
-                <div class="quotes">
-                    <strong>불편한 편의점</strong>
-                    <p>
-                        불편한 편의점에서 기록하고 싶은 인용구를 적는
-                        공간입니다. 불편한 편의점에서 기록하고 싶은 인용구를 적는 공간입니다.
-                    </p>
-                    <span><a href="#">바로가기</a></span>
-                </div>
-                <div class="quotes">
-                    <strong>불편한 편의점</strong>
-                    <p>
-                        불편한 편의점에서 기록하고 싶은 인용구를 적는
-                        공간입니다. 불편한 편의점에서 기록하고 싶은 인용구를 적는 공간입니다.
-                    </p>
-                    <span><a href="#">바로가기</a></span>
-                </div> --%>
             </div>
         </section>
         

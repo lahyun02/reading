@@ -39,6 +39,7 @@
      	<c:choose>
 			<c:when test="${empty USER_INFO.id}">
 				<li><a href="/login/loginForm.do" class="login">로그인</a></li>
+				<li><a href="/join/memberType.do" class="login">회원가입</a></li>
 			</c:when>
 			<c:otherwise>
 				<li><a href="/login/actionLogout.do"><c:out value="${USER_INFO.name}"/>님 로그아웃</a></li>
