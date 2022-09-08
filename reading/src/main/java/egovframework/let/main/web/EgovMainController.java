@@ -1,7 +1,11 @@
 package egovframework.let.main.web;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.text.*;
+import java.util.*;
 
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.com.cmm.LoginVO;
@@ -23,6 +27,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
@@ -127,6 +132,55 @@ public class EgovMainController {
 		
 		
 		return "main/Index";
+	}
+	
+	@RequestMapping(value = "/kakaomap.do")
+	public String kakaomap(@ModelAttribute("rv") ReviewVO rvVO, SentcVO stVO, HttpServletRequest request, ModelMap model) throws Exception {
+//		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+//		model.addAttribute("USER_INFO", user);
+//		
+//		rvVO.setMainAt("Y");
+//		stVO.setMainAt("Y"); 
+//		
+//		List<EgovMap> resultList = reviewService.selectReviewList(rvVO);
+//		model.addAttribute("resultList", resultList); 
+//		
+//		List<EgovMap> sentcList = sentcService.selectSentcList(stVO);
+//		model.addAttribute("sentcList", sentcList); 
+		
+		
+		return "kakaomap";
+	}
+	
+	@RequestMapping(value = "/ajaxExample.do")
+	public String ajax_example(@ModelAttribute("rv") ReviewVO rvVO, SentcVO stVO, HttpServletRequest request, ModelMap model) throws Exception {
+		
+		return "ajax_example";
+	}
+	
+	@RequestMapping(value = "/ajaxResponse.do")
+	@ResponseBody  // jsp를 리턴하는 것이 아닌 그냥 순수 string 자체를 응답으로 리턴함 
+	public String ajaxResponse(@RequestParam String btnNum) throws Exception {
+		System.out.println("btnNum = " + btnNum); 
+		
+		return "btnNum";
+	}
+	
+	
+	@RequestMapping(value = "/ajaxExample2.do")
+	public String ajax_example2() throws Exception {
+		
+		return "ajax_example2";
+	}
+	
+	@RequestMapping(value = "/timeAjax.do")
+	@ResponseBody  // jsp를 리턴하는 것이 아닌 그냥 순수 string 자체를 응답으로 리턴함 
+	public String timeAjax() throws Exception {
+		Date date = Calendar.getInstance().getTime(); //현재시간
+		DateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //형식지정
+		String strDate = dataFormat.format(date); //date -> string으로 변환(위의 형식에 맞게) 
+		
+		return strDate;
 	}
 	
 
