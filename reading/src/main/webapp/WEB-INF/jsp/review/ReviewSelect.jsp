@@ -158,6 +158,7 @@ $(document).ready(function(){
 					console.log('${USER_INFO.id}');
 					if(vo.repWriter == '${USER_INFO.id}') {
 						$('<button>').attr('data-no', vo.repNo).addClass('btn-del').text('삭제').appendTo( '#reply-box' ); 
+						/*$('<button>').attr('data-no', vo.repNo).addClass('btn-edit').text('변경').appendTo( '#reply-box' ); */
 					}
 					
 					$('<hr>').appendTo('#reply-box'); 
@@ -222,8 +223,27 @@ $(document).ready(function(){
 		}).fail(function( jqXHR, textStatus ) {  //요청이 실패한 경우 실행할 함수 
 			alert( "Request failed: " + textStatus );
 		});	
-		
-		
+	});
+	
+	$('#reply-box').on('click', '.btn-edit', function(){
+		var htmls = "";
+		htmls += '<div>';
+		htmls += '<title>Placeholder</title>';		
+		htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';		
+		htmls += '<text x="50%" fill="#007bff" dy=".3em">32x32</text>';		
+		htmls += '</svg>';		
+		htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';		
+		htmls += '<span class="d-block">';		
+		htmls += '<strong class="text-gray-dark">' + reg_id + '</strong>';		
+		htmls += '<span style="padding-left: 7px; font-size: 9pt">';		
+		htmls += '<a href="javascript:void(0)" onclick="fn_updateReply(' + rid + ', \'' + reg_id + '\')" style="padding-right:5px">저장</a>';		
+		htmls += '<a href="javascript:void(0)" onClick="showReplyList()">취소<a>';		
+		htmls += '</span>';		htmls += '</span>';				
+		htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';		
+		htmls += content;		
+		htmls += '</textarea>';				
+		htmls += '</p>';		
+		htmls += '</div>';
 	});
 		
 

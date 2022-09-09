@@ -175,6 +175,13 @@
 			<version>53.1</version>
 		</dependency>
 		
+		<!-- JAVA 객체와 JSON 문자열 사이의 상호 변환 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.13.3</version>
+		</dependency>
+		
 		<!-- Validator(mapper를 쓸수있게 해주는 라이브러리 -->
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -195,6 +202,13 @@
 			<version>0.4.2</version>
 		</dependency>  
 		
+		<!-- JSONObject 라이드러리 -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
 		
 	</dependencies>
 

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.let.review.service.impl.ReviewMapper">
+	
+	<resultMap id="review" type="egovframework.let.review.service.ReviewVO">
+		<result property="reviewId" column="REVIEW_ID"/>
+		<result property="reviewSj" column="REVIEW_SJ"/>
+		<result property="reviewCn" column="REVIEW_CN"/>
+		<result property="rvBookSj" column="RV_BOOK_SJ"/>
+		<result property="rvBookWr" column="RV_BOOk_WR"/>
+		<result property="rvBookPb" column="RV_BOOk_PB"/>
+		<result property="inqireCo" column="INQIRE_CO"/>
+		<result property="creatIp" column="CREAT_IP"/>
+		<result property="othbcAt" column="OTHBC_AT"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="frstRegistPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+		<result property="atchFileNm" column="ATCH_FILE_NM"/>
+		<result property="mainAt" column="MAIN_AT"/>
+	</resultMap>
+	
+	<select id="selectReviewList" resultType="egovMap">
+		SELECT
+			A.REVIEW_ID
+			, A.REVIEW_SJ
+			, A.REVIEW_CN
+			, A.RV_BOOK_SJ
+			, A.RV_BOOk_WR
+			, A.RV_BOOk_PB
+			, A.INQIRE_CO
+			, A.CREAT_IP
+			, A.OTHBC_AT
+			, A.USE_AT
+			, A.ATCH_FILE_ID
+			, A.FRST_REGIST_PNTTM
+			, A.FRST_REGISTER_ID
+			, (SELECT
+				CONCAT(X.STRE_FILE_NM, '.', X.FILE_EXTSN)
+			  FROM LETTNFILEDETAIL X		
+			  WHERE X.ATCH_FILE_ID = A.ATCH_FILE_ID
+			  	AND UPPER(FILE_EXTSN) IN ('GIF', 'JPG', 'JPEG', 'BMP', 'PNG')
+			  ORDER BY FILE_SN
+			  LIMIT 1
+			) AS ATCH_FILE_NM
+		FROM REVIEW A 
+		<include refid="selectReviewListWhere"></include> 
+		
+		<choose>
+			<when test='mainAt != "N"'>
+				ORDER BY INQIRE_CO DESC, FRST_REGIST_PNTTM, REVIEW_SJ ASC
+				LIMIT 6 OFFSET 0
+			</when>
+			<otherwise>
+				ORDER BY A.FRST_REGIST_PNTTM DESC
+				LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="selectReviewListCnt" resultType="java.lang.Integer">
+		SELECT 
+			COUNT(*) CNT
+		FROM REVIEW A
+		<include refid="selectReviewListWhere"></include>
+	</select>
+	
+	<sql id="selectReviewListWhere">
+		<where>
+			A.USE_AT = 'Y'
+			<if test='searchCondition != null and searchCondition != ""'>
+				<choose>
+					<when test='searchCondition == "0"'>
+						AND A.REVIEW_SJ LIKE CONCAT('%', #{searchKeyword}, '%')
+					</when>
+					<when test='searchCondition == "1"'>
+						AND A.REVIEW_CN LIKE CONCAT('%', #{searchKeyword}, '%')
+					</when>
+					<when test='searchCondition == "2"'>
+						AND A.FRST_REGISTER_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+					</when>
+				</choose>			
+			</if>
+			
+		</where>
+	</sql>
+	
+	<insert id="insertReview">
+		INSERT INTO REVIEW (
+			REVIEW_ID
+			, REVIEW_SJ
+			, REVIEW_CN
+			, RV_BOOK_SJ
+			, RV_BOOk_WR
+			, RV_BOOk_PB
+			, INQIRE_CO
+			, CREAT_IP
+			, OTHBC_AT
+			, USE_AT
+			, ATCH_FILE_ID
+			, FRST_REGIST_PNTTM
+			, FRST_REGISTER_ID
+			, LAST_UPDT_PNTTM
+			, LAST_UPDUSR_ID
+			, MAIN_AT
+		) VALUES (
+			#{reviewId}
+			, #{reviewSj}
+			, #{reviewCn}
+			, #{rvBookSj}
+			, #{rvBookWr}
+			, #{rvBookPb}
+			, 0
+			, #{creatIp}
+			, #{othbcAt}
+			, 'Y'
+			, #{atchFileId}
+			, NOW()
+			, #{userId}
+			, NOW()
+			, #{userId}
+			, 'N'
+		)
+	</insert>
+	
+	<select id="selectReview" resultMap="review"> 
+		SELECT
+			REVIEW_ID
+			, REVIEW_SJ
+			, REVIEW_CN
+			, RV_BOOK_SJ
+			, RV_BOOk_WR
+			, RV_BOOk_PB
+			, INQIRE_CO
+			, CREAT_IP
+			, OTHBC_AT
+			, USE_AT
+			, A.ATCH_FILE_ID
+			, FRST_REGIST_PNTTM
+			, FRST_REGISTER_ID
+			, (SELECT
+				CONCAT(X.STRE_FILE_NM, '.', X.FILE_EXTSN)
+			  FROM LETTNFILEDETAIL X		
+			  WHERE X.ATCH_FILE_ID = A.ATCH_FILE_ID
+			  	AND UPPER(FILE_EXTSN) IN ('GIF', 'JPG', 'JPEG', 'BMP', 'PNG')
+			  ORDER BY FILE_SN
+			  LIMIT 1
+			) AS ATCH_FILE_NM
+		FROM REVIEW A
+		WHERE REVIEW_ID = #{reviewId}
+	</select>
+	
+	<update id="updateViewCnt" parameterType="egovframework.let.review.service.ReviewVO">
+		UPDATE REVIEW SET
+			INQIRE_CO = INQIRE_CO + 1
+		WHERE REVIEW_ID = #{reviewId}
+	</update>
+	
+	<update id="updateReview" parameterType="egovframework.let.review.service.ReviewVO"> 
+		UPDATE REVIEW 
+		SET REVIEW_SJ = #{reviewSj}
+			, REVIEW_CN = #{reviewCn}
+			, RV_BOOK_SJ = #{rvBookSj}
+			, RV_BOOk_WR = #{rvBookWr}
+			, RV_BOOk_PB = #{rvBookPb}
+			, LAST_UPDT_PNTTM = NOW()
+			, LAST_UPDUSR_ID = #{lastUpdusrId}
+		WHERE REVIEW_ID = #{reviewId}
+	</update>
+	
+	<delete id="deleteReview" parameterType="egovframework.let.review.service.ReviewVO">
+		UPDATE REVIEW SET
+			USE_AT = 'N'
+		WHERE REVIEW_ID = #{reviewId}
+		<if test='mngAt != "Y"'>
+			AND FRST_REGISTER_ID = #{userId}
+		</if>
+	</delete>
+	
+	
+</mapper>

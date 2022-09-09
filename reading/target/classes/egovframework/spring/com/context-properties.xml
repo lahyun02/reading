@@ -11,6 +11,18 @@
 	        	<entry key="posblAtchFileSize" value="5242880"/>
 	        	<entry key="Globals.fileStorePath" value="/user/file/sht/"/>
 	        	<entry key="Globals.addedOptions" value="false"/>
+	        	
+	        	<!-- 첨부파일이 저장되는 경로 -->
+	        	<entry key="review.fileStorePath" value="${Globals.File}/upload/review/"/>
+	        	<entry key="sentc.fileStorePath" value="${Globals.File}/upload/sentc/"/>
+	        	
+	        	<!-- 썸네일 기본 크기(가로 세로) -->
+	        	<entry key="photoThumbWidth" value="350" />
+	        	<entry key="photoThumbHeight" value="250" />
+	        	
+	        	<!-- 상세조회 첨부파일 사진 보이기 -->
+	        	<entry key="photoSelectWidth" value="500" />
+	        	<entry key="photoSelectHeight" value="500" />
 	        </map>
 		</property>
 	</bean>

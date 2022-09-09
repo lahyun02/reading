@@ -16,6 +16,9 @@ public interface ReplyService {
 	int deleteReply(ReplyVO rpVO) throws Exception;
 	
 	//댓글 목록 
-	List<EgovMap> selectReplyList(ReplyVO rpVO) throws Exception;  
+	List<EgovMap> selectReplyList(ReplyVO rpVO) throws Exception;
+	
+	//댓글 변경 
+	int updateReply(ReplyVO rpVO) throws Exception;  
 
 }

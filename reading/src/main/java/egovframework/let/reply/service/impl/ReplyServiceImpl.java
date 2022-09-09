@@ -49,6 +49,12 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.selectReplyList(rpVO); 
 	}
 	
+	//댓글 변경 
+	@Override
+	public int updateReply(ReplyVO rpVO) throws Exception {
+		return replyMapper.updateReply(rpVO);
+	}
+	
 	
 	
 }

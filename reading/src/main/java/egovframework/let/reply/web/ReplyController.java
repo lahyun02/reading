@@ -100,5 +100,24 @@ public class ReplyController {
 		return map;
 	}
 	
+	//댓글 변경
+	@RequestMapping(value = "/reply/update.do")
+	@ResponseBody
+	public Map<String, Object> update(@ModelAttribute("rp") ReplyVO rpVO, HttpServletRequest request, Model model) throws Exception{
+		System.out.println(rpVO); 
+		System.out.println("replyNo: " + rpVO.getRepNo()); 
+		
+		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+		rpVO.setRepWriter(user.getId());
+		
+		int num = replyService.updateReply(rpVO);
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+ 		map.put("no", num); //map에 num값을 담기
+
+		System.out.println("update 댓글 변경 후 실행 ");
+		return map;
+	}
+	
 	
 }
