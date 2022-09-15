@@ -179,8 +179,50 @@ public class EgovMainController {
 		Date date = Calendar.getInstance().getTime(); //현재시간
 		DateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //형식지정
 		String strDate = dataFormat.format(date); //date -> string으로 변환(위의 형식에 맞게) 
-		System.out.println("2022-09-15 커밋 테스트");  
+		
 		return strDate;
+	}
+	
+	@RequestMapping(value = "/timeCheck.do")
+	@ResponseBody
+	public String timeCheck(@RequestParam String date) throws ParseException {
+		//DB에는 string으로 dateFrom, dateTo라고 숙소 정보가 저장되어 있다고 가정
+		/*
+		 * dateFrom: 2022-09-01
+		 * dateTo: 2022-09-15
+		 * 
+		 * String -> Date 객체로 변환할 것임 (Date객체에 날짜 비교 함수가 있어서)
+		 * SimpleDateFormat -> 말 그대로 string -> date, date -> string 변환을 형식을 정해서 심플하게 변환함
+		 * */
+		
+		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //형식지정할 수 있음
+		
+		Date dateFrom = sdf.parse("2022-09-01 00:00:00"); //DB에서 시작날짜를 가져옴
+		//DB에서 시작날짜를 String으로 가져왔다고 하고, parse메소드를 통해 string값을 date객체로 변환함
+		Date dateTo = sdf.parse("2022-09-15 23:59:59");
+		//DB에서 끝날짜를 String으로 가져왔다고 하고, parse메소드를 통해 string값을 date객체로 변환함
+		Date dateCheck = sdf.parse(date + " 10:00:00"); //2022-09-01 10:00:00
+		//매개변수로 전달받은 9월 14일 날짜 변환, String -> Date
+		
+		System.out.println(dateCheck);
+		
+		// 9/2 ~ 9/14
+		// 시작날짜보다 뒤에 있고 끝나는 날짜보다 앞에 있다면
+		if(dateCheck.after(dateFrom) && dateCheck.before(dateTo)) {
+			return "Reservation Success";
+		} else
+			return "Reservation Failed";
+		
+		
+//		System.out.println("date = " + date); //2022-09-14
+		
+		//받은 날짜 9월 14일이 예약 간으한 날짜인지 비교
+		//숙소는 9월 1일부터 15일까지 예약이 가능하다고 가정
+		
+		//검사를 하고 결과값을 리턴해야 함
+		//단순히 예약 성공/실패만 알고 싶음
+//		return "Reservation Success";
+		
 	}
 	
 
