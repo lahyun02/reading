@@ -179,7 +179,7 @@ public class EgovMainController {
 		Date date = Calendar.getInstance().getTime(); //현재시간
 		DateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //형식지정
 		String strDate = dataFormat.format(date); //date -> string으로 변환(위의 형식에 맞게) 
-		
+		System.out.println("2022-09-15 커밋 테스트");  
 		return strDate;
 	}
 	
